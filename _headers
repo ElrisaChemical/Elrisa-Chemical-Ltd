@@ -1,0 +1,28 @@
+# ============================================
+# ELRISA CHEMICALS — Security Headers
+# ============================================
+# Place this file in your site root.
+# Works automatically on Netlify.
+# For other hosts, configure these in your server settings (Apache .htaccess, Nginx config, etc.)
+
+/*
+  # Prevent clickjacking — no one can embed your site in an iframe
+  X-Frame-Options: DENY
+
+  # Prevent MIME-type sniffing attacks
+  X-Content-Type-Options: nosniff
+
+  # Enable XSS protection in older browsers
+  X-XSS-Protection: 1; mode=block
+
+  # Control referrer information sent to other sites
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Permissions Policy — disable unnecessary browser features
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+  # Content Security Policy — control what resources can load
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://api.web3forms.com https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com;
+
+  # Force HTTPS (once SSL is enabled)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
