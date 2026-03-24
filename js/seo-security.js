@@ -7,12 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Cookie Consent Banner ---
   const COOKIE_KEY = 'elrisa_cookie_consent';
 
-  function hasConsented() {
-    return localStorage.getItem(COOKIE_KEY) === 'accepted';
+  function hasResponded() {
+    try {
+      const val = localStorage.getItem(COOKIE_KEY);
+      return val === 'accepted' || val === 'rejected';
+    } catch (e) {
+      // localStorage blocked (file:// or private browsing)
+      return false;
+    }
   }
 
   function createCookieBanner() {
-    if (hasConsented()) return;
+    if (hasResponded()) return;
 
     const banner = document.createElement('div');
     banner.id = 'cookie-banner';
@@ -38,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('cookie-accept').addEventListener('click', () => {
-      localStorage.setItem(COOKIE_KEY, 'accepted');
+      try { localStorage.setItem(COOKIE_KEY, 'accepted'); } catch(e) {}
       closeBanner(banner);
     });
 
     document.getElementById('cookie-reject').addEventListener('click', () => {
-      localStorage.setItem(COOKIE_KEY, 'rejected');
+      try { localStorage.setItem(COOKIE_KEY, 'rejected'); } catch(e) {}
       closeBanner(banner);
     });
   }

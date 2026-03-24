@@ -679,11 +679,45 @@ body {
 }
 
 /* --- Mobile Improvements --- */
+
+/* Fix horizontal scroll on all devices */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent anything from causing horizontal overflow */
+.hero, .page-hero, .cta-section, .footer, section {
+  overflow-x: hidden;
+}
+
+/* Geo accent and glow elements contained */
+.page-hero .geo-accent,
+.cta-section::before,
+.cta-section::after {
+  overflow: hidden;
+}
+
 @media (max-width: 640px) {
   .hero h1 { font-size: 2.2rem; }
   .hero p { font-size: 1rem; }
-  .hero-buttons { flex-direction: column; }
-  .hero-buttons .btn { width: 100%; }
+
+  /* Hero buttons: side by side, compact, not full width */
+  .hero-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .hero-buttons .btn {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .hero-buttons .btn svg {
+    display: none;
+  }
+
   .scroll-indicator { display: none; }
 
   .section-pad { padding: 60px 0; }
@@ -697,10 +731,23 @@ body {
 
   .process-step { padding: 24px 16px; }
 
+  /* CTA buttons: side by side on mobile too */
   .cta-section { padding: 60px 0; }
   .cta-section h2 { font-size: 1.6rem; }
-  .cta-buttons { flex-direction: column; }
-  .cta-buttons .btn { width: 100%; }
+  .cta-buttons {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .cta-buttons .btn {
+    width: auto;
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    min-width: 0;
+  }
+  .cta-buttons .btn svg {
+    display: none;
+  }
 
   .quote-block { padding: 24px 24px 24px 40px; font-size: 1rem; }
   .icon-card { padding: 24px; }
@@ -709,6 +756,21 @@ body {
   .footer-grid { gap: 32px; }
 
   .back-to-top { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+
+  /* Container tighter on mobile */
+  .container { padding: 0 16px; }
+
+  /* Prevent accent blocks from causing overflow */
+  .split-img { overflow: hidden; }
+  .split-img .accent-block { display: none; }
+
+  /* Feature list tighter */
+  .feature-list { gap: 12px; }
+  .feature-list li span { font-size: 0.88rem; }
+
+  /* Tags wrap better */
+  .tag-list { gap: 6px; }
+  .tag-list .tag { padding: 5px 12px; font-size: 0.78rem; }
 }
 
 @media (min-width: 641px) and (max-width: 899px) {
