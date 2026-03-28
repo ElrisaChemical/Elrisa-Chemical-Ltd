@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /images/*_thumb.jpeg
 
-Sitemap: https://www.elrisachemical.com/sitemap.xml
+Sitemap: https://elrisachemical.com/sitemap.xml

@@ -4,6 +4,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const GA_ID = 'G-TL9PKNVK70';
+
+  // --- Google Analytics (consent-gated) ---
+  function loadAnalytics() {
+    if (document.getElementById('ga-script')) return;
+    const script = document.createElement('script');
+    script.id = 'ga-script';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+
   // --- Cookie Consent Banner ---
   const COOKIE_KEY = 'elrisa_cookie_consent';
 
@@ -17,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Load Analytics immediately if visitor already accepted
+  try {
+    if (localStorage.getItem(COOKIE_KEY) === 'accepted') loadAnalytics();
+  } catch(e) {}
+
   function createCookieBanner() {
     if (hasResponded()) return;
 
@@ -26,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cookie-inner">
         <div class="cookie-text">
           <strong>We value your privacy</strong>
-          <p>We store a small preference in your browser to remember this choice. We do not use tracking or analytics cookies. Read our <a href="${getBasePath()}pages/privacy.html">Privacy Policy</a> for full details.</p>
+          <p>We use cookies to understand how visitors use our site (Google Analytics). Declining means no analytics data is collected. Read our <a href="${getBasePath()}pages/privacy.html">Privacy Policy</a> for full details.</p>
         </div>
         <div class="cookie-actions">
           <button id="cookie-reject" class="cookie-btn cookie-btn-outline">Decline</button>
@@ -45,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('cookie-accept').addEventListener('click', () => {
       try { localStorage.setItem(COOKIE_KEY, 'accepted'); } catch(e) {}
+      loadAnalytics();
       closeBanner(banner);
     });
 
