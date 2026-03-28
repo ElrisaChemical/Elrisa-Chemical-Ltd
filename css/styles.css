@@ -16,6 +16,8 @@
   --clr-gold: #FBBF24;
   --clr-sun: #FDE68A;
   --clr-coral: #F97316;
+  --clr-steel: #1E3A5F;
+  --clr-steel-mid: #2C5282;
   --clr-white: #FFFFFF;
   --clr-offwhite: #F8FAF5;
   --clr-light: #ECFDF5;
@@ -198,8 +200,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo .logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   background: linear-gradient(135deg, var(--clr-emerald), var(--clr-lime));
   border-radius: 10px;
   display: flex;
@@ -488,7 +490,7 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(11, 29, 38, 0.85), rgba(13, 75, 60, 0.75));
+  background: linear-gradient(135deg, rgba(11, 29, 38, 0.92), rgba(12, 28, 58, 0.82));
 }
 
 .hero-content {
@@ -534,7 +536,8 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 700px;
 }
 
-.hero h1 .highlight {
+.hero h1 .highlight,
+.hero h1 .highlight .word {
   background: linear-gradient(135deg, var(--clr-emerald), var(--clr-lime));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -606,7 +609,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-hero.dark {
-  background: var(--clr-deep);
+  background: linear-gradient(135deg, var(--clr-deep) 0%, #0e2244 100%);
 }
 
 .page-hero.dark h1,

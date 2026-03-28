@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="cookie-inner">
         <div class="cookie-text">
           <strong>We value your privacy</strong>
-          <p>We use cookies to enhance your browsing experience and analyse site traffic. By clicking "Accept", you consent to our use of cookies. Read our <a href="${getBasePath()}pages/privacy.html">Privacy Policy</a> for more information.</p>
+          <p>We store a small preference in your browser to remember this choice. We do not use tracking or analytics cookies. Read our <a href="${getBasePath()}pages/privacy.html">Privacy Policy</a> for full details.</p>
         </div>
         <div class="cookie-actions">
           <button id="cookie-reject" class="cookie-btn cookie-btn-outline">Decline</button>
