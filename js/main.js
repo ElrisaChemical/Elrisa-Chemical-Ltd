@@ -16,12 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Navbar Scroll ---
   const navbar = document.querySelector('.navbar');
+  const topBar = document.querySelector('.top-bar');
   if (navbar) {
     const handleScroll = () => {
-      if (window.scrollY > 60) {
+      const topBarHeight = topBar ? topBar.offsetHeight : 0;
+      const isMobile = window.innerWidth <= 640;
+      if (window.scrollY > (isMobile ? topBarHeight : 60)) {
         navbar.classList.add('scrolled');
+        if (topBar && isMobile) topBar.classList.add('hidden');
       } else {
         navbar.classList.remove('scrolled');
+        if (topBar && isMobile) topBar.classList.remove('hidden');
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });

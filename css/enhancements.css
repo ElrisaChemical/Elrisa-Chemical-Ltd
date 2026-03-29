@@ -127,11 +127,33 @@
   padding-top: 200px;
 }
 
-/* Mobile: top bar scrolls away, navbar sticks at top */
+/* Mobile: top bar fixed at top, navbar sits just below it */
 @media (max-width: 640px) {
-  .navbar { top: 0; position: fixed; }
-  .page-hero { padding-top: 140px; }
-  .hero-content { padding-top: 120px; }
+  .top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1002;
+    transition: transform 0.3s ease;
+  }
+
+  .top-bar.hidden {
+    transform: translateY(-100%);
+  }
+
+  .navbar {
+    position: fixed;
+    top: 40px;
+    transition: top 0.3s ease, background 0.3s ease;
+  }
+
+  .navbar.scrolled {
+    top: 0;
+  }
+
+  .page-hero { padding-top: 160px; }
+  .hero-content { padding-top: 140px; }
 }
 
 /* ============================================

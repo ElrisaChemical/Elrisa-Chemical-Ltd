@@ -284,6 +284,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Mobile navbar — always show background so logo/toggle are visible */
+@media (max-width: 899px) {
+  .navbar {
+    background: rgba(10, 30, 20, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .navbar.scrolled .nav-toggle span {
+    background: var(--clr-deep);
+  }
+}
+
 /* Mobile menu toggle */
 .nav-toggle {
   display: flex;
