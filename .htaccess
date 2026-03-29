@@ -3,10 +3,16 @@
 # ============================================
 # Use this if hosting on Apache-based servers (cPanel, shared hosting, etc.)
 
-# Force HTTPS (uncomment once SSL certificate is active)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force HTTPS and redirect www to non-www
+RewriteEngine On
+
+# Redirect HTTP to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/%{REQUEST_URI} [R=301,L]
 
 # Security Headers
 <IfModule mod_headers.c>
@@ -28,8 +34,8 @@
   # Content Security Policy
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://api.web3forms.com https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com;"
 
-  # HSTS — Force HTTPS for 1 year (uncomment once SSL is confirmed working)
-  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  # HSTS — Force HTTPS for 1 year
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 # Disable directory listing
