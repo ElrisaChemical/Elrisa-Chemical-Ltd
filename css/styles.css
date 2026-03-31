@@ -187,7 +187,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0;
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
@@ -212,6 +212,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--clr-white);
   font-family: var(--font-display);
   margin-block: -45px;
+  margin-right: -50px;
   flex-shrink: 0;
 }
 
@@ -228,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-links a {
-  padding: 8px 16px;
+  padding: 8px 11px;
   font-size: 0.9rem;
   font-weight: 500;
   color: rgba(255,255,255,0.85);
@@ -301,6 +302,15 @@ h1, h2, h3, h4, h5, h6 {
   .navbar.scrolled .nav-toggle span {
     background: var(--clr-deep);
   }
+
+  /* Keep logo a sensible size on mobile */
+  .nav-logo .logo-icon,
+  .footer-brand .footer-logo .logo-icon {
+    width: 60px !important;
+    height: 60px !important;
+    margin-block: 0 !important;
+    margin-right: -15px !important;
+  }
 }
 
 /* Mobile menu toggle */
@@ -350,7 +360,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 360px;
   height: 100vh;
   background: var(--clr-deep);
-  padding: 100px 32px 40px;
+  padding: 150px 32px 40px;
   transition: var(--transition-slow);
   z-index: 999;
   overflow-y: auto;
