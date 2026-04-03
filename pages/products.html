@@ -194,7 +194,16 @@
         <a href="../index.html">Home</a>
         <a href="about.html">Our Story</a>
         <a href="what-we-do.html">What We Do</a>
-        <a href="products.html" class="active">Products</a>
+        <div class="nav-dropdown">
+          <a href="products.html" class="nav-dropdown-toggle active">Products <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
+          <div class="nav-dropdown-menu">
+            <a href="products.html" class="active">All Products</a>
+            <a href="cnsl.html">CNSL</a>
+            <a href="polyols.html">Polyols</a>
+            <a href="phenolic-resins.html">Phenolic Resins</a>
+            <a href="contract-processing.html">Contract Processing</a>
+          </div>
+        </div>
         <a href="contact.html" class="nav-cta">Get In Touch</a>
       </div>
       <div class="nav-toggle"><span></span><span></span><span></span></div>
@@ -205,7 +214,19 @@
     <a href="../index.html">Home</a>
     <a href="about.html">Our Story</a>
     <a href="what-we-do.html">What We Do</a>
-    <a href="products.html" class="active">Products</a>
+    <div class="mobile-accordion">
+      <button class="mobile-accordion-toggle">
+        Products
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="mobile-accordion-items">
+        <a href="products.html" class="active">All Products</a>
+        <a href="cnsl.html">CNSL</a>
+        <a href="polyols.html">Polyols</a>
+        <a href="phenolic-resins.html">Phenolic Resins</a>
+        <a href="contract-processing.html">Contract Processing</a>
+      </div>
+    </div>
     <a href="contact.html">Contact</a>
     <a href="contact.html" class="mobile-cta">Get In Touch</a>
   </div>
@@ -254,8 +275,9 @@
               <span>Natural polymerization</span>
               <span>Bio-renewable</span>
             </div>
-            <div class="product-cta">
-              <button onclick="openProductModal('cnsl')" class="btn btn-outline" style="width: 100%;">Request Specifications</button>
+            <div class="product-cta" style="display:flex;flex-direction:column;gap:10px;">
+              <a href="cnsl.html" class="btn btn-primary" style="width:100%;text-align:center;">Learn More →</a>
+              <button onclick="openProductModal('cnsl')" class="btn btn-outline" style="width:100%;">Request Specifications</button>
             </div>
           </div>
         </div>
@@ -284,8 +306,9 @@
               <span>Petro-based (conventional)</span>
               <span>Other renewables</span>
             </div>
-            <div class="product-cta">
-              <button onclick="openProductModal('polyols')" class="btn btn-outline" style="width: 100%;">Request Specifications</button>
+            <div class="product-cta" style="display:flex;flex-direction:column;gap:10px;">
+              <a href="polyols.html" class="btn btn-primary" style="width:100%;text-align:center;">Learn More →</a>
+              <button onclick="openProductModal('polyols')" class="btn btn-outline" style="width:100%;">Request Specifications</button>
             </div>
           </div>
         </div>
@@ -372,8 +395,9 @@
               <span>Packaging</span>
               <span>Consumer goods</span>
             </div>
-            <div class="product-cta">
-              <button onclick="openProductModal('custom')" class="btn btn-outline" style="width: 100%;">Discuss Your Needs</button>
+            <div class="product-cta" style="display:flex;flex-direction:column;gap:10px;">
+              <a href="contract-processing.html" class="btn btn-primary" style="width:100%;text-align:center;">Learn More →</a>
+              <button onclick="openProductModal('custom')" class="btn btn-outline" style="width:100%;">Discuss Your Needs</button>
             </div>
           </div>
         </div>

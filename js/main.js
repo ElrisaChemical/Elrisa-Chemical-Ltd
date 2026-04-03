@@ -65,7 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileOverlay.addEventListener('click', closeMenu);
     }
 
-    // Close on link click
+    // Mobile accordion toggle (Products sub-menu)
+    mobileMenu.querySelectorAll('.mobile-accordion-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        btn.closest('.mobile-accordion').classList.toggle('open');
+      });
+    });
+
+    // Close on link click (exclude accordion toggles)
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMenu);
     });
