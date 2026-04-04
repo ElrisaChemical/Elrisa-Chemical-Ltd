@@ -29,15 +29,9 @@
     "@type": "Product",
     "name": "Bio-Based Polyols",
     "description": "Bio-based and conventional polyols for polyurethane (PUR) foams, polyisocyanurate (PIR) insulation, PU coatings, adhesives, and sealants. Available in polyester grades with controlled hydroxyl value and viscosity specifications.",
+    "image": "https://elrisachemical.com/images/CNS.jpeg",
     "brand": { "@type": "Brand", "name": "Elrisa Chemicals Ltd" },
     "category": "Industrial Chemicals",
-    "audience": {
-      "@type": "Audience",
-      "geographicArea": {
-        "@type": "Place",
-        "name": "Ghana, West Africa"
-      }
-    },
     "offers": {
       "@type": "Offer",
       "availability": "https://schema.org/InStock",
@@ -49,7 +43,21 @@
       },
       "seller": { "@type": "Organization", "name": "Elrisa Chemicals Ltd" },
       "url": "https://elrisachemical.com/pages/contact.html",
-      "areaServed": ["Ghana", "Nigeria", "Ivory Coast", "Senegal", "West Africa"]
+      "areaServed": ["Ghana", "Nigeria", "Ivory Coast", "Senegal", "West Africa"],
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "GH" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 14, "unitCode": "DAY" }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "GH",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      }
     }
   }
   </script>

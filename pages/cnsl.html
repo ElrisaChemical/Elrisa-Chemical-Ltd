@@ -23,6 +23,7 @@
     "@type": "Product",
     "name": "Cashew Nut Shell Liquid (CNSL)",
     "description": "Naturally occurring phenolic lipid extracted from cashew nut shells. A versatile bio-based feedstock used in friction materials, resins, surface coatings, and waterproofing. Extracted and supplied by Elrisa Chemicals Ltd in Ghana.",
+    "image": "https://elrisachemical.com/images/CNS.jpeg",
     "brand": { "@type": "Brand", "name": "Elrisa Chemicals Ltd" },
     "category": "Bio-Based Specialty Chemicals",
     "offers": {
@@ -33,7 +34,21 @@
       "priceSpecification": { "@type": "PriceSpecification", "description": "Contact for pricing" },
       "seller": { "@type": "Organization", "name": "Elrisa Chemicals Ltd" },
       "url": "https://elrisachemical.com/pages/contact.html",
-      "areaServed": ["Ghana", "West Africa"]
+      "areaServed": ["Ghana", "West Africa"],
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "GH" },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" },
+          "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 14, "unitCode": "DAY" }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "GH",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+      }
     }
   }
   </script>
