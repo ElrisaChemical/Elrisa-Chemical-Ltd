@@ -2,6 +2,26 @@
    ELRISA CHEMICALS — SEO, Cookies & Security
    ============================================ */
 
+// Exposed immediately so form handlers can call these before DOMContentLoaded resolves
+window.ElrisaForms = {
+  isSpam: function(form) {
+    const hp = form.querySelector('[name="website_url"]');
+    if (hp && hp.value !== '') return true;
+    const tf = form.querySelector('[name="_form_loaded"]');
+    if (tf && (Date.now() - parseInt(tf.value, 10)) < 3000) return true;
+    return false;
+  },
+  rateLimited: function(key) {
+    try {
+      const storageKey = 'elrisa_rl_' + key;
+      const last = parseInt(localStorage.getItem(storageKey) || '0', 10);
+      if (last && Date.now() - last < 30000) return true;
+      localStorage.setItem(storageKey, Date.now().toString());
+      return false;
+    } catch(e) { return false; }
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const GA_ID = 'G-TL9PKNVK70';
@@ -95,14 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
   cookieStyles.textContent = `
     #cookie-banner {
       position: fixed;
-      bottom: 0;
+      top: 0;
       left: 0;
       right: 0;
       z-index: 10000;
       background: #0B1D26;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 20px;
-      transform: translateY(100%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 14px 20px;
+      transform: translateY(-100%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     #cookie-banner.visible {
@@ -178,64 +198,24 @@ document.addEventListener('DOMContentLoaded', () => {
   createCookieBanner();
 
 
-  // --- Contact Form Honeypot Spam Protection ---
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    // Inject honeypot field (hidden from real users, bots fill it in)
-    const honeypot = document.createElement('div');
-    honeypot.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden;';
-    honeypot.setAttribute('aria-hidden', 'true');
-    honeypot.innerHTML = `
-      <label for="website_url">Leave this empty</label>
-      <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
-    `;
-    contactForm.insertBefore(honeypot, contactForm.firstChild);
-
-    // Add timestamp to detect instant submissions (bots submit immediately)
-    const timeField = document.createElement('input');
-    timeField.type = 'hidden';
-    timeField.name = '_form_loaded';
-    timeField.value = Date.now().toString();
-    contactForm.appendChild(timeField);
-
-    // Override form submit to check honeypot + timing
-    const originalSubmit = contactForm.onsubmit;
-    contactForm.onsubmit = function(e) {
-      e.preventDefault();
-
-      // Check honeypot
-      const hpField = document.getElementById('website_url');
-      if (hpField && hpField.value !== '') {
-        // Bot detected — silently show success (don't reveal detection)
-        const form = document.getElementById('contact-form');
-        const success = document.getElementById('form-success');
-        if (form && success) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        }
-        return false;
-      }
-
-      // Check timing (less than 3 seconds = likely bot)
-      const loadTime = parseInt(timeField.value, 10);
-      const elapsed = Date.now() - loadTime;
-      if (elapsed < 3000) {
-        const form = document.getElementById('contact-form');
-        const success = document.getElementById('form-success');
-        if (form && success) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        }
-        return false;
-      }
-
-      // Legitimate submission — call original handler
-      if (typeof handleSubmit === 'function') {
-        return handleSubmit(e);
-      }
-      return false;
-    };
-  }
+  // Inject honeypot + load-timestamp into every form on the page.
+  // Form submit handlers call window.ElrisaForms.isSpam() to read these values.
+  document.querySelectorAll('form').forEach(function(form) {
+    if (!form.querySelector('[name="website_url"]')) {
+      const hp = document.createElement('div');
+      hp.style.cssText = 'position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden;pointer-events:none;';
+      hp.setAttribute('aria-hidden', 'true');
+      hp.innerHTML = '<label>Leave blank</label><input type="text" name="website_url" tabindex="-1" autocomplete="off">';
+      form.insertBefore(hp, form.firstChild);
+    }
+    if (!form.querySelector('[name="_form_loaded"]')) {
+      const tf = document.createElement('input');
+      tf.type = 'hidden';
+      tf.name = '_form_loaded';
+      tf.value = Date.now().toString();
+      form.appendChild(tf);
+    }
+  });
 
 
   // --- Lazy Loading Images ---
