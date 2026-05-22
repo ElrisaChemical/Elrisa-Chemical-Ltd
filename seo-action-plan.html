@@ -84,6 +84,46 @@
   .phase-tag.p3{background:var(--blue);color:#000}
   .phase-tag.p4{background:var(--purple);color:#fff}
   .phase-tag.insight{background:rgba(96,165,250,0.2);color:var(--blue);border:1px solid rgba(96,165,250,0.3)}
+  .phase-tag.audit{background:rgba(20,184,166,0.2);color:#2dd4bf;border:1px solid rgba(20,184,166,0.3)}
+
+  /* SCORE CARDS */
+  .score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+  .score-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:24px 20px;position:relative;overflow:hidden}
+  .score-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+  .score-card.s-warn::before{background:var(--warn)}
+  .score-card.s-good::before{background:var(--good)}
+  .score-card.s-blue::before{background:var(--blue)}
+  .score-label{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink-soft);margin-bottom:12px}
+  .score-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:52px;line-height:1;margin-bottom:6px;letter-spacing:-2px}
+  .score-num .denom{font-size:22px;color:var(--ink-soft);font-weight:400;letter-spacing:0}
+  .score-card.s-warn .score-num{color:var(--warn)}
+  .score-card.s-good .score-num{color:var(--good)}
+  .score-card.s-blue .score-num{color:var(--blue)}
+  .score-title{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--ink)}
+  .score-sub{font-size:12px;color:var(--ink-dim);line-height:1.55}
+  .score-target{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft)}
+  .score-target b{color:var(--good)}
+
+  /* AUDIT DETAIL PANELS */
+  .audit-detail{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:20px 22px;margin-bottom:12px}
+  .audit-detail h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .audit-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:1px}
+  .audit-tag.good{background:rgba(34,197,94,0.15);color:var(--good)}
+  .audit-tag.warn{background:rgba(234,179,8,0.15);color:var(--warn)}
+  .audit-tag.bad{background:rgba(239,68,68,0.15);color:var(--bad)}
+  .audit-row{display:flex;gap:24px;flex-wrap:wrap}
+  .audit-col{flex:1;min-width:220px}
+  .audit-col h5{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--good);margin-bottom:10px}
+  .audit-col h5.gap-label{color:var(--bad)}
+  .audit-list{list-style:none;padding:0;margin:0}
+  .audit-list li{font-size:12px;color:var(--ink-dim);line-height:1.65;padding:3px 0 3px 16px;position:relative}
+  .audit-list li::before{content:'→';position:absolute;left:0;color:var(--ink-soft);font-size:10px;top:4px}
+  .audit-list li.good-item{color:var(--ink)}
+  .audit-list li.good-item::before{content:'✓';color:var(--good)}
+  .audit-list li.gap-item::before{content:'✗';color:var(--bad)}
+  .audit-mono{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--panel-2);padding:1px 5px;border-radius:3px}
+
+  @media(max-width:760px){.score-grid{grid-template-columns:1fr}}
   .section-head h2{
     font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;
     letter-spacing:-0.3px;
@@ -357,6 +397,179 @@
         <div class="f-what">They do not target "phenol-free" positioning. They do not have US/North America export content. They do not cover downstream products (polyols, resins).</div>
         <div class="f-action">→ These are Elrisa's competitive advantages. The "phenol-free" angle on your phenolic resins is a direct gap cashewderigh cannot fill. This is where Elrisa wins.</div>
       </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SITE AUDIT — CURRENT SCORES
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag audit">Site Audit</span>
+    <h2>Current website rating — SEO, Security &amp; Google Exposure</h2>
+    <span class="timeframe">Assessed 22 May 2026</span>
+  </div>
+
+  <!-- Three score cards -->
+  <div class="score-grid">
+
+    <div class="score-card s-warn">
+      <div class="score-label">Dimension 01</div>
+      <div class="score-num">6.5<span class="denom"> / 10</span></div>
+      <div class="score-title">Search Engine Optimisation</div>
+      <div class="score-sub">Up from ~3.5 before this work. All fundamentals now in place — title tags, meta descriptions, schema, internal linking. What remains is authority-building, not technical fixes.</div>
+      <div class="score-target">90-day ceiling: <b>8.0 / 10</b> — requires backlinks + address + team page</div>
+    </div>
+
+    <div class="score-card s-good">
+      <div class="score-label">Dimension 02</div>
+      <div class="score-num">8.0<span class="denom"> / 10</span></div>
+      <div class="score-title">Website Security</div>
+      <div class="score-sub">Genuinely strong for a static website. HSTS preload, full security header stack, consent-gated analytics, anti-spam form protection. Main limitation is structural — static sites cannot use nonce-based CSP.</div>
+      <div class="score-target">Ceiling: <b>8.5 / 10</b> — hard limit of static hosting architecture</div>
+    </div>
+
+    <div class="score-card s-blue">
+      <div class="score-label">Dimension 03</div>
+      <div class="score-num">5.0<span class="denom"> / 10</span></div>
+      <div class="score-title">Google Exposure</div>
+      <div class="score-sub">Infrastructure is correct; authority is not built yet. 737 impressions, 43 clicks, rank 22.9. Phase 1 rewrites and new pages will move this — results appear in GSC 1–3 weeks after Google re-crawls.</div>
+      <div class="score-target">90-day ceiling: <b>7.0 / 10</b> — requires directory backlinks + GSC sitemap + GBP</div>
+    </div>
+
+  </div>
+
+  <!-- AUDIT DETAIL: SEO -->
+  <div class="audit-detail">
+    <h4><span class="audit-tag warn">SEO · 6.5 / 10</span> What is working vs. what is holding it back</h4>
+    <div class="audit-row">
+      <div class="audit-col">
+        <h5>What is now solid</h5>
+        <ul class="audit-list">
+          <li class="good-item">All major pages: optimised title tags (under 65 chars), buyer-focused meta descriptions, Open Graph &amp; Twitter Cards</li>
+          <li class="good-item">Schema layered correctly — Organization (with registration details), BreadcrumbList on all product pages, FAQPage on cnsl.html, WebSite on homepage</li>
+          <li class="good-item">13 pages covering distinct topics — good content depth for a 3-month-old site</li>
+          <li class="good-item">Internal linking is deliberate — homepage authority flows to CNSL, polyols, phenolic resins, and all deep-dive pages</li>
+          <li class="good-item">Canonical tags on every page</li>
+          <li class="good-item">"Coming Soon" removed from phenolic resins — was blocking 189 impressions at zero clicks</li>
+          <li class="good-item">Cache-busting versioned assets (?v=1.1), Gzip compression, browser caching headers all in .htaccess</li>
+        </ul>
+      </div>
+      <div class="audit-col">
+        <h5 class="gap-label">What is holding the score back</h5>
+        <ul class="audit-list">
+          <li class="gap-item">Domain is 3 months old — Google is cautious with new domains regardless of technical quality. Resolves with time only</li>
+          <li class="gap-item">No backlinks yet — trade directory submissions are the next single highest-leverage task available</li>
+          <li class="gap-item">No physical address on site — missing NAP signal weakens local and B2B trust ranking</li>
+          <li class="gap-item">No Team or Leadership page — E-E-A-T gap that Cashewderigh currently holds over the site</li>
+          <li class="gap-item">5 of 13 pages not yet indexed — sitemap must be verified in Google Search Console</li>
+          <li class="gap-item">Keywords meta tag on index.html has 35 phrases — Google ignores the tag entirely, but it is technical noise</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIT DETAIL: SECURITY -->
+  <div class="audit-detail">
+    <h4><span class="audit-tag good">Security · 8.0 / 10</span> What is working vs. what limits the score</h4>
+    <div class="audit-row">
+      <div class="audit-col">
+        <h5>What is working</h5>
+        <ul class="audit-list">
+          <li class="good-item">HTTPS enforced (301 redirect) + HSTS with <span class="audit-mono">preload</span> flag — browsers refuse HTTP connections entirely, no exceptions</li>
+          <li class="good-item">Full security header stack: X-Frame-Options DENY, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-XSS-Protection</li>
+          <li class="good-item">Content Security Policy scoped to only the domains the site actually needs (Web3Forms, hCaptcha, GTM, Google Fonts)</li>
+          <li class="good-item">Directory listing disabled, server signature suppressed, .git / .env / .bak files blocked at server level</li>
+          <li class="good-item">Forms protected with honeypot fields, load-timestamp bot detection, and client-side rate limiting</li>
+          <li class="good-item">Google Analytics is consent-gated — does not fire until the visitor explicitly accepts (GDPR-correct behaviour)</li>
+        </ul>
+      </div>
+      <div class="audit-col">
+        <h5 class="gap-label">What limits the score</h5>
+        <ul class="audit-list">
+          <li class="gap-item">CSP uses <span class="audit-mono">'unsafe-inline'</span> for scripts and styles — a necessary trade-off for static HTML, but leaves a small XSS surface that a nonce-based CSP would close</li>
+          <li class="gap-item">No nonce-based CSP — would require server-side rendering, not achievable with the current static hosting setup</li>
+          <li class="gap-item">Rate limiting is client-side only (localStorage) — a determined bot could clear storage between submissions. Server-level rate limiting would require a different hosting tier</li>
+          <li class="gap-item">No Subresource Integrity (SRI) hashes on the Google Fonts CDN link — low risk in practice, but a technical gap</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIT DETAIL: GOOGLE EXPOSURE -->
+  <div class="audit-detail">
+    <h4><span class="audit-tag bad">Google Exposure · 5.0 / 10</span> Current GSC baseline and what each phase unlocks</h4>
+    <div class="audit-row">
+      <div class="audit-col">
+        <h5>GSC baseline (27 Mar – 19 May 2026)</h5>
+        <ul class="audit-list">
+          <li>737 total impressions across 80+ countries</li>
+          <li>43 clicks · average position 22.9 (page 2–3)</li>
+          <li>USA: 227 impressions · 15 clicks · rank 19.3</li>
+          <li>8 of 13 pages currently indexed</li>
+          <li>0 of 31 commercial queries generating reliable clicks</li>
+          <li>Phenolic resins: 189 impressions · 0 clicks (was "Coming Soon" in snippet)</li>
+          <li>"What is CNSL": rank 17 — one push from top 10</li>
+        </ul>
+      </div>
+      <div class="audit-col">
+        <h5>What Phase 1 &amp; 2 work unlocks (1–3 weeks post-crawl)</h5>
+        <ul class="audit-list">
+          <li class="good-item">Phenolic resins snippet fixed — 189 impressions now eligible to convert to clicks</li>
+          <li class="good-item">FAQPage schema on cnsl.html — featured snippet eligibility for "what is CNSL" and related queries</li>
+          <li class="good-item">Three new deep-dive pages targeting rank-70–80 queries that previously had no dedicated page</li>
+          <li class="good-item">BreadcrumbList on all pages — structured path shown in search results, proven CTR increase</li>
+          <li class="good-item">Organization schema with registration details — trust signal for Google's E-E-A-T assessment</li>
+        </ul>
+        <h5 class="gap-label" style="margin-top:16px">Still needed to reach 7.0+</h5>
+        <ul class="audit-list">
+          <li class="gap-item">Sitemap submitted and verified in GSC — 5 pages not yet indexed</li>
+          <li class="gap-item">Trade directory backlinks — Kompass, ICIS, GEPA Ghana (see Phase 3)</li>
+          <li class="gap-item">Google Business Profile registered as service-area business</li>
+          <li class="gap-item">Corporate address added once available — anchors NAP and local signals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="panel-wrap">
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Score Before</th>
+          <th>Score Now</th>
+          <th>90-Day Ceiling</th>
+          <th>Main Bottleneck</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600;color:var(--ink)">SEO</td>
+          <td><span class="metric-now">~3.5 / 10</span></td>
+          <td><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--warn)">6.5 / 10</span></td>
+          <td><span class="metric-target">8.0 / 10</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Backlinks + physical address + team page</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;color:var(--ink)">Security</td>
+          <td><span class="metric-now">~5.0 / 10</span></td>
+          <td><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--good)">8.0 / 10</span></td>
+          <td><span class="metric-target">8.5 / 10</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Structural — static site CSP limits</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;color:var(--ink)">Google Exposure</td>
+          <td><span class="metric-now">~3.0 / 10</span></td>
+          <td><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue)">5.0 / 10</span></td>
+          <td><span class="metric-target">7.0 / 10</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">New domain age + no backlinks yet</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:16px">
+      <b>Important:</b> SEO and Security scores reflect the state of the codebase <em>as it exists locally</em>. They apply to the live website only once all updated files have been uploaded to the server. Google Exposure reflects live GSC data as of 22 May 2026.
     </div>
   </div>
 

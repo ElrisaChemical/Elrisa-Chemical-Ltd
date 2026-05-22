@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elrisa Chemicals — Website Update Brief · May 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', serif;
+    font-size: 11pt;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 48px 56px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+  }
+  .header h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    letter-spacing: -0.3px;
+  }
+  .header .sub {
+    font-size: 9.5pt;
+    color: #555;
+    margin-top: 4px;
+    font-family: 'Arial', sans-serif;
+  }
+
+  h2 {
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 28px 0 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  ul {
+    padding-left: 18px;
+    line-height: 1.9;
+  }
+  ul li {
+    font-size: 10.5pt;
+    color: #222;
+  }
+  ul li span.note {
+    color: #666;
+    font-size: 9.5pt;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .scores {
+    display: flex;
+    gap: 20px;
+    margin: 16px 0 8px;
+  }
+  .score-box {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .score-box .num {
+    font-size: 22pt;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .score-box .lbl {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Arial', sans-serif;
+    color: #555;
+    margin-top: 4px;
+  }
+  .score-box.warn .num { color: #c97c00; }
+  .score-box.good .num { color: #16803c; }
+  .score-box.blue .num { color: #1d6fa4; }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid #ddd;
+    font-family: 'Arial', sans-serif;
+    font-size: 8.5pt;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { padding: 32px 40px; }
+    @page { margin: 20mm 18mm; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Elrisa Chemicals Ltd — Website Update Brief</h1>
+    <div class="sub">Prepared for management · May 2026 · Internal use only</div>
+  </div>
+
+  <h2>Current Site Scores</h2>
+  <div class="scores">
+    <div class="score-box warn">
+      <div class="num">6.5<span style="font-size:13pt;color:#aaa"> /10</span></div>
+      <div class="lbl">SEO<br><span style="color:#16803c;font-size:7.5pt">↑ was ~3.5</span></div>
+    </div>
+    <div class="score-box good">
+      <div class="num">8.0<span style="font-size:13pt;color:#aaa"> /10</span></div>
+      <div class="lbl">Security<br><span style="color:#16803c;font-size:7.5pt">↑ was ~5.0</span></div>
+    </div>
+    <div class="score-box blue">
+      <div class="num">5.0<span style="font-size:13pt;color:#aaa"> /10</span></div>
+      <div class="lbl">Google Visibility<br><span style="color:#aaa;font-size:7.5pt">growing</span></div>
+    </div>
+  </div>
+  <p style="font-size:9.5pt;color:#555;font-family:Arial,sans-serif;margin-top:6px">Google Visibility is low because the domain is only 3 months old — this improves naturally over time as Google builds trust in the site.</p>
+
+  <h2>What Has Been Done</h2>
+  <ul>
+    <li>All product pages rewritten with proper titles and descriptions optimised for search engines</li>
+    <li>Phenolic resins page updated — removed "Coming Soon" language that was causing zero clicks from 189 searches</li>
+    <li>About page updated with company registration details (17 March 2026) and in-house laboratory mention</li>
+    <li>Three new pages created: <em>Export &amp; Supply</em>, <em>CNSL for Friction Materials</em>, and <em>Phenol-Free Phenolic Resin</em></li>
+    <li>FAQ section added to CNSL page — makes the site eligible for Google's featured answer boxes</li>
+    <li>Structured data (schema markup) added across all pages — helps Google understand and display the site correctly</li>
+    <li>Internal links improved so all pages connect to each other logically</li>
+    <li>Security headers, HTTPS enforcement, anti-spam protection, and cookie consent all fully configured</li>
+    <li>Back-to-top button fixed — now visible and correctly positioned</li>
+    <li>Export page copy corrected — language now accurately reflects that we export to these regions, not that we have existing customers there</li>
+  </ul>
+
+  <h2>What Still Needs to Be Done</h2>
+  <ul>
+    <li><strong>Upload all updated files to the live server</strong> <span class="note">— changes only apply once files are on the server</span></li>
+    <li><strong>Verify XML sitemap in Google Search Console</strong> <span class="note">— 5 of 13 pages are not yet indexed by Google</span></li>
+    <li><strong>Submit to trade directories</strong> <span class="note">— Kompass, ICIS, GEPA Ghana, ChemicalBook (builds backlinks and buyer discovery)</span></li>
+    <li><strong>Register Google Business Profile</strong> <span class="note">— as a service-area business, no physical address required</span></li>
+    <li><strong>Provide corporate office address</strong> <span class="note">— to be added to the About page, footer, and schema once available</span></li>
+    <li><strong>Create a Team / Leadership page</strong> <span class="note">— when team profiles are ready; important for Google's trust evaluation</span></li>
+    <li><strong>Dedicated Laboratory page</strong> <span class="note">— to be created when specific tests, equipment, and quality parameters can be documented</span></li>
+  </ul>
+
+  <div class="footer">
+    <span>elrisachemical.com</span>
+    <span>Confidential — Internal Use Only</span>
+    <span>May 2026</span>
+  </div>
+
+</body>
+</html>
