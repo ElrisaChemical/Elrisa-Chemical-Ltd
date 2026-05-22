@@ -79,6 +79,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // --- Desktop Products Dropdown (click-toggle) ---
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('open');
+      // Close all other dropdowns first
+      dropdowns.forEach(d => d.classList.remove('open'));
+      if (!isOpen) dropdown.classList.add('open');
+      toggle.setAttribute('aria-expanded', !isOpen);
+    });
+
+    // Keyboard accessibility
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    dropdowns.forEach(d => {
+      d.classList.remove('open');
+      const t = d.querySelector('.nav-dropdown-toggle');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Keep dropdown open when clicking inside the menu
+  document.querySelectorAll('.nav-dropdown-menu').forEach(menu => {
+    menu.addEventListener('click', (e) => e.stopPropagation());
+  });
+
   // --- Scroll Reveal ---
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
 
@@ -138,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTop = document.querySelector('.back-to-top');
   if (backToTop) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 600) {
+      if (window.scrollY > 300) {
         backToTop.classList.add('visible');
       } else {
         backToTop.classList.remove('visible');

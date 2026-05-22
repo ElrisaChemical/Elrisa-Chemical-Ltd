@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elrisa Chemical · SEO Action Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e1a;
+    --panel:#111726;
+    --panel-2:#161d30;
+    --border:#1f2a44;
+    --ink:#e8eaf0;
+    --ink-dim:#8b94ac;
+    --ink-soft:#5a6379;
+    --accent:#f5a524;
+    --accent-2:#ff6b35;
+    --good:#22c55e;
+    --warn:#eab308;
+    --bad:#ef4444;
+    --blue:#60a5fa;
+    --purple:#a78bfa;
+    --grid:#1a2238;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:14px;
+    line-height:1.5;
+    padding:32px 24px;
+    min-height:100vh;
+    background-image:
+      radial-gradient(circle at 15% 0%,rgba(245,165,36,0.06),transparent 45%),
+      radial-gradient(circle at 85% 100%,rgba(96,165,250,0.04),transparent 45%);
+  }
+  .wrap{max-width:1200px;margin:0 auto}
+
+  /* HEADER */
+  .header{
+    padding-bottom:24px;margin-bottom:32px;
+    border-bottom:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:16px;
+  }
+  .header h1{
+    font-family:'Instrument Serif',serif;
+    font-size:42px;font-weight:400;letter-spacing:-0.5px;
+    font-style:italic;
+    line-height:1;
+  }
+  .header h1 span{color:var(--accent);font-style:normal;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:36px}
+  .header .sub{color:var(--ink-dim);font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:8px}
+  .header .meta{text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-dim)}
+  .header .meta b{color:var(--ink);display:block;font-size:13px}
+
+  /* STATUS LEGEND */
+  .legend{
+    display:flex;gap:20px;margin-bottom:28px;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+  }
+  .legend-item{display:flex;align-items:center;gap:6px;color:var(--ink-dim)}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .dot.todo{background:var(--ink-soft)}
+  .dot.doing{background:var(--warn)}
+  .dot.done{background:var(--good)}
+
+  /* SECTION HEADING */
+  .section-head{
+    display:flex;align-items:center;gap:12px;
+    margin:36px 0 16px;
+  }
+  .section-head .phase-tag{
+    font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+    padding:4px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:1.2px;
+    flex-shrink:0;
+  }
+  .phase-tag.p1{background:var(--bad);color:#fff}
+  .phase-tag.p2{background:var(--accent);color:#000}
+  .phase-tag.p3{background:var(--blue);color:#000}
+  .phase-tag.p4{background:var(--purple);color:#fff}
+  .phase-tag.insight{background:rgba(96,165,250,0.2);color:var(--blue);border:1px solid rgba(96,165,250,0.3)}
+  .section-head h2{
+    font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;
+    letter-spacing:-0.3px;
+  }
+  .section-head .timeframe{
+    margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--ink-soft);white-space:nowrap;
+  }
+
+  /* TASK CARD */
+  .tasks{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+  .task{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:18px 20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .task::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  }
+  .task.todo::before{background:var(--ink-soft)}
+  .task.doing::before{background:var(--warn)}
+  .task.done::before{background:var(--good)}
+
+  .task-top{display:flex;align-items:flex-start;gap:12px}
+  .task-status{
+    font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+    padding:3px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:1px;
+    flex-shrink:0;margin-top:2px;
+    cursor:pointer;user-select:none;transition:opacity 0.2s;
+  }
+  .task-status:hover{opacity:0.8}
+  .task-status.todo{background:rgba(90,99,121,0.3);color:var(--ink-soft)}
+  .task-status.doing{background:rgba(234,179,8,0.2);color:var(--warn)}
+  .task-status.done{background:rgba(34,197,94,0.2);color:var(--good)}
+
+  .task-content{flex:1}
+  .task-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.4}
+  .task-why{font-size:13px;color:var(--ink-dim);margin-bottom:0;line-height:1.55}
+  .task-why b{color:var(--ink);font-weight:600}
+
+  /* CODE BLOCKS */
+  .code-block{
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:6px;padding:14px 16px;margin-top:14px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    color:#a5d8ff;line-height:1.7;
+    overflow-x:auto;white-space:pre-wrap;word-break:break-word;
+  }
+  .code-block .label{
+    font-size:9px;text-transform:uppercase;letter-spacing:1.5px;
+    color:var(--ink-soft);display:block;margin-bottom:8px;
+  }
+  .code-block .tag{color:#74c0fc}
+  .code-block .attr{color:#a5d8ff}
+  .code-block .val{color:#a9e34b}
+  .code-block .old{color:var(--bad);text-decoration:line-through;opacity:0.7}
+  .code-block .new{color:var(--good)}
+  .code-block .note{color:var(--ink-soft);font-style:italic}
+
+  /* COMPETITOR PANEL */
+  .competitor{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:8px;padding:24px;margin-bottom:12px;
+  }
+  .competitor h3{
+    font-size:16px;font-weight:600;margin-bottom:4px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .competitor .domain{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);
+  }
+  .competitor .intro{font-size:13px;color:var(--ink-dim);margin-bottom:16px;margin-top:6px}
+
+  .factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .factor{
+    background:var(--panel-2);border:1px solid var(--border);
+    border-radius:6px;padding:12px 14px;
+  }
+  .factor .f-label{
+    font-family:'JetBrains Mono',monospace;font-size:9px;
+    text-transform:uppercase;letter-spacing:1.2px;
+    color:var(--ink-soft);margin-bottom:6px;
+  }
+  .factor .f-what{font-size:13px;color:var(--ink);margin-bottom:4px;font-weight:500}
+  .factor .f-action{font-size:12px;color:var(--accent);line-height:1.5}
+
+  /* PAGE BRIEF */
+  .page-brief{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:8px;padding:20px;margin-bottom:12px;
+  }
+  .page-brief .pb-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    margin-bottom:12px;flex-wrap:wrap;gap:8px;
+  }
+  .page-brief h3{font-size:15px;font-weight:600;color:var(--ink)}
+  .page-brief .url{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    color:var(--blue);background:rgba(96,165,250,0.1);
+    padding:3px 8px;border-radius:3px;
+  }
+  .page-brief .target-query{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--accent);background:rgba(245,165,36,0.1);
+    border:1px solid rgba(245,165,36,0.2);
+    padding:3px 8px;border-radius:3px;display:inline-block;margin-bottom:12px;
+  }
+  .page-brief .data-row{
+    display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap;
+  }
+  .page-brief .stat{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    background:var(--panel-2);padding:4px 10px;border-radius:3px;
+    border:1px solid var(--border);color:var(--ink-dim);
+  }
+  .page-brief .stat b{color:var(--bad)}
+  .brief-content{font-size:13px;color:var(--ink-dim);line-height:1.6}
+  .brief-content ul{margin:8px 0 8px 16px}
+  .brief-content ul li{margin-bottom:4px}
+  .brief-content strong{color:var(--ink);font-weight:600}
+
+  /* METRICS TABLE */
+  .metrics-table{width:100%;border-collapse:collapse}
+  .metrics-table th{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    text-transform:uppercase;letter-spacing:1px;
+    color:var(--ink-soft);padding:10px 12px;
+    border-bottom:1px solid var(--border);text-align:left;
+  }
+  .metrics-table td{
+    padding:11px 12px;border-bottom:1px solid rgba(31,42,68,0.5);
+    font-size:13px;color:var(--ink);
+  }
+  .metrics-table tr:hover td{background:rgba(245,165,36,0.03)}
+  .metrics-table td .metric-now{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--bad);
+  }
+  .metrics-table td .metric-target{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--good);
+  }
+  .metrics-table td .metric-label{color:var(--ink-dim);font-size:12px}
+
+  /* VERDICT BOX */
+  .verdict{
+    background:var(--panel);border-left:3px solid var(--accent);
+    padding:18px 22px;margin:28px 0;border-radius:0 8px 8px 0;
+    border:1px solid var(--border);border-left:3px solid var(--accent);
+  }
+  .verdict .v-label{
+    font-family:'JetBrains Mono',monospace;font-size:9px;
+    text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);margin-bottom:8px;
+  }
+  .verdict p{font-size:14px;color:#cbd1e0;line-height:1.65;max-width:75ch}
+  .verdict p b{color:var(--ink);font-weight:600}
+
+  .panel-wrap{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:8px;padding:20px;margin-bottom:12px;
+  }
+
+  .note-box{
+    background:rgba(245,165,36,0.06);border:1px solid rgba(245,165,36,0.2);
+    border-radius:6px;padding:14px 16px;margin-top:12px;
+    font-size:13px;color:#cbd1e0;line-height:1.6;
+  }
+  .note-box b{color:var(--accent);font-weight:600}
+
+  .footer{
+    text-align:center;margin-top:48px;padding-top:20px;
+    border-top:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--ink-soft);letter-spacing:1px;
+  }
+
+  @media(max-width:760px){
+    .factor-grid{grid-template-columns:1fr}
+    .header{flex-direction:column;align-items:flex-start}
+    .header .meta{text-align:left}
+    .section-head{flex-wrap:wrap}
+    .section-head .timeframe{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1><span>ELRISA</span> <em>· seo action plan</em></h1>
+      <div class="sub">elrisachemical.com  //  internal use only  //  not published to website</div>
+    </div>
+    <div class="meta">
+      <span>Created</span>
+      <b>21 May 2026</b>
+      <span style="margin-top:8px;display:block">Based on GSC data</span>
+      <b>27 Mar – 19 May 2026</b>
+    </div>
+  </div>
+
+  <!-- PENDING NOTES -->
+  <div class="note-box" style="margin-bottom:24px;">
+    <b>⚑ Pending from client (22 May 2026):</b>
+    <ul style="margin:8px 0 0 16px;line-height:1.9;">
+      <li><b>Corporate office address:</b> Office is almost complete and well furnished. Full address to be added to About page, footer, and Organization schema once provided.</li>
+      <li><b>Factory:</b> Not yet set up — do not mention on any page. Will be added in future months when operational.</li>
+      <li><b>Teams page:</b> Skipped for now — to be created when team profiles are ready. Important for E-E-A-T.</li>
+      <li><b>Company registration confirmed:</b> Registered 17 March 2026 with the Registrar-General's Department under the Companies Act, 2019 (Act 992). Already added to About page and Organization schema.</li>
+      <li><b>In-house laboratory:</b> Confirmed at corporate office. Brief description added to About page — sufficient for now. A dedicated lab page should wait until there is enough real content to fill it honestly (specific tests conducted, equipment, quality parameters, certifications). Thin content on a standalone page would hurt more than help. See Phase 3 for the full decision note.</li>
+    </ul>
+  </div>
+
+  <!-- STATUS LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="dot todo"></div> To Do</div>
+    <div class="legend-item"><div class="dot doing"></div> In Progress</div>
+    <div class="legend-item"><div class="dot done"></div> Done</div>
+    <span style="color:var(--ink-soft);font-size:11px">— Click a status badge to cycle through states</span>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="v-label">The Core Problem</div>
+    <p>You are getting <b>seen but not chosen</b>. 737 impressions, 43 clicks, 80 countries. Google is ranking the site — but the snippets (title + description) that searchers read in the results page are not giving people a reason to click. Fix the snippets first. Then create the pages that target your highest-impression queries. Then build authority over time. In that order.</p>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       COMPETITOR INSIGHT
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag insight">Competitor Insight</span>
+    <h2>Why cashewderigh.com ranks above you — and what to copy</h2>
+  </div>
+
+  <div class="competitor">
+    <h3>Cashew Derivation Ghana Ltd <span class="domain">cashewderigh.com</span></h3>
+    <p class="intro">A licensed Free Zones Company in Accra with a factory near Tema Port. They process cashew shells into technical CNSL and pelletised biomass fuel. Their website is simple — yet they dominate CNSL search terms. Here is exactly why, and what Elrisa can do about each factor.</p>
+
+    <div class="factor-grid">
+      <div class="factor">
+        <div class="f-label">Factor 01 · Topical Authority</div>
+        <div class="f-what">Their entire site is about CNSL. Every page reinforces one topic.</div>
+        <div class="f-action">→ Elrisa spreads across CNSL + polyols + phenolic resins + contract processing. That is not a weakness — but each topic needs its own tight cluster of pages. Start with CNSL since it drives 30%+ of all tracked queries.</div>
+      </div>
+      <div class="factor">
+        <div class="f-label">Factor 02 · Physical Location Signals</div>
+        <div class="f-what">"Factory near Tema Port, Accra" — explicit geographic anchor.</div>
+        <div class="f-action">→ Elrisa has no physical address to publish. Compensate with explicit country/region language on every page: "Ghana-sourced", "West Africa", "exported to USA and Europe". Google uses location language as a proxy signal.</div>
+      </div>
+      <div class="factor">
+        <div class="f-label">Factor 03 · E-E-A-T: Team & People</div>
+        <div class="f-what">They have a Team page. Showing humans behind the company is a direct Google E-E-A-T signal (Experience, Expertise, Authoritativeness, Trustworthiness).</div>
+        <div class="f-action">→ Elrisa needs a Team or Leadership section. Even two or three brief profiles with relevant backgrounds (chemical engineering, agriculture, trade) will materially improve how Google evaluates the site's authority.</div>
+      </div>
+      <div class="factor">
+        <div class="f-label">Factor 04 · Laboratory & Quality Signals</div>
+        <div class="f-what">They mention a "24/7 laboratory" that tests throughout the production chain. This is a credibility signal even if not proven to the reader.</div>
+        <div class="f-action">→ Elrisa should surface quality language explicitly: testing protocols, quality standards we adhere to (ISO, ASTM if applicable), and the processes we use to ensure consistency. This does not require a TDS — it requires language.</div>
+      </div>
+      <div class="factor">
+        <div class="f-label">Factor 05 · Corporate Legitimacy</div>
+        <div class="f-what">They publish company registration details: "Incorporated June 9, 2021 under Ghana's Companies Act 2019". Official credentials build trust with both users and Google.</div>
+        <div class="f-action">→ Elrisa should add registration details (company number, regulatory body, year established) to the About page and schema markup. This information costs nothing to add and adds meaningful trust signals.</div>
+      </div>
+      <div class="factor">
+        <div class="f-label">Factor 06 · What Cashewderigh Is NOT Doing</div>
+        <div class="f-what">They do not target "phenol-free" positioning. They do not have US/North America export content. They do not cover downstream products (polyols, resins).</div>
+        <div class="f-action">→ These are Elrisa's competitive advantages. The "phenol-free" angle on your phenolic resins is a direct gap cashewderigh cannot fill. This is where Elrisa wins.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PHASE 1: IMMEDIATE — METADATA REWRITES
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag p1">Phase 1 · Urgent</span>
+    <h2>Rewrite title tags &amp; meta descriptions</h2>
+    <span class="timeframe">This week · No new content required</span>
+  </div>
+  <p style="color:var(--ink-dim);font-size:13px;margin-bottom:20px;max-width:70ch">These are zero-content changes. Open each HTML file, find the &lt;title&gt; and &lt;meta name="description"&gt; tags, paste the new versions. Google re-indexes within days. This is the single fastest lever available.</p>
+
+  <div class="tasks">
+
+    <!-- PHENOLIC RESINS -->
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">phenolic-resins.html — Remove "developing" and "coming soon" language immediately</div>
+          <div class="task-why">
+            <b>Why this is urgent:</b> This page has 189 impressions and <b>zero clicks</b>. The meta description currently says "Elrisa Chemicals is <b>developing</b>… Register your interest to be notified at launch." That is telling searchers the product does not exist yet — so naturally, nobody clicks. The Open Graph title even says "Coming Soon." Fix this first.
+          </div>
+          <div class="code-block">
+<span class="label">File: pages/phenolic-resins.html</span>
+<span class="old">&lt;title&gt;Phenolic &amp; Epoxy Resins — Bio-Based Resins from CNSL | Elrisa Chemicals Ghana&lt;/title&gt;</span>
+<span class="new">&lt;title&gt;Phenol-Free Phenolic Resins from CNSL | Bio-Based Industrial Resins — Elrisa Chemicals&lt;/title&gt;</span>
+
+<span class="old">&lt;meta name="description" content="Elrisa Chemicals is developing bio-based phenolic and epoxy resins from CNSL... Register your interest to be notified at launch."&gt;</span>
+<span class="new">&lt;meta name="description" content="Bio-based phenolic resins derived from cashew nut shell liquid (CNSL) — naturally phenol-free, renewable, and formulated for composites, friction linings, laminates, and electrical insulation. Ghana-sourced. Enquire for specifications."&gt;</span>
+
+<span class="old">&lt;!-- OG title also says "Coming Soon" --&gt;</span>
+<span class="old">&lt;meta property="og:title" content="Phenolic &amp; Epoxy Resins — Coming Soon | Elrisa Chemicals Ghana"&gt;</span>
+<span class="new">&lt;meta property="og:title" content="Phenol-Free Phenolic Resins from CNSL — Elrisa Chemicals Ghana"&gt;</span>
+
+<span class="new">&lt;meta property="og:description" content="CNSL-derived phenol-free phenolic resins for friction materials, composites, and laminates. Bio-based. Ghana-sourced. Enquire for specifications."&gt;</span></div>
+          <div class="note-box"><b>On page body copy:</b> Replace any language referencing "coming soon", "future production", or "register your interest" with present-tense language about the product category, its applications, and an invitation to enquire. Focus on what the resin does, not when it will be available.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CNSL PAGE -->
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">cnsl.html — Add "phenol-free" to title and sharpen description for export buyers</div>
+          <div class="task-why">
+            <b>Why:</b> 201 impressions at position 36.1 means Google knows this page is about CNSL — but it is landing on page 4. The current description is accurate but does not include "phenol-free," which is your highest-impression query (47 impressions). Adding it connects the existing page to that search intent.
+          </div>
+          <div class="code-block">
+<span class="label">File: pages/cnsl.html</span>
+<span class="old">&lt;title&gt;Cashew Nut Shell Liquid (CNSL) — Bio-Based Chemical Supplier Ghana | Elrisa Chemicals&lt;/title&gt;</span>
+<span class="new">&lt;title&gt;CNSL Supplier Ghana | Cashew Nut Shell Liquid — Naturally Phenol-Free Bio-Feedstock | Elrisa&lt;/title&gt;</span>
+
+<span class="old">&lt;meta name="description" content="Elrisa Chemicals extracts and supplies Cashew Nut Shell Liquid (CNSL) and cardanol in Ghana and West Africa. CNSL is a versatile bio-based feedstock used in friction materials, resins, surface coatings, waterproofing, and more. Contact for pricing."&gt;</span>
+<span class="new">&lt;meta name="description" content="Technical-grade CNSL and cardanol from Ghana — a naturally phenol-free bio-based feedstock for friction linings, surface coatings, waterproofing, and resin formulation. Exported to USA, Europe, and Asia. Request export pricing."&gt;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POLYOLS PAGE -->
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">polyols.html — Shorten title (currently 86 chars, Google cuts at ~60) and sharpen CTR hook</div>
+          <div class="task-why">
+            <b>Why:</b> 199 impressions but only 1.01% CTR at position 13.5. The page is close to page 1 but the long title is being truncated in search results, cutting off key information. A shorter, punchier title and a buyer-focused description will improve click rate.
+          </div>
+          <div class="code-block">
+<span class="label">File: pages/polyols.html</span>
+<span class="old">&lt;title&gt;Polyol Supplier Ghana &amp; West Africa — Bio-Based Polyols for PUR, PIR &amp; PU Coatings | Elrisa Chemicals&lt;/title&gt;</span>
+<span class="note">↑ 97 characters — Google truncates at ~60, hiding "| Elrisa Chemicals" entirely</span>
+<span class="new">&lt;title&gt;Bio-Based Polyol Supplier Ghana | PUR, PIR &amp; PU Grades — Elrisa Chemicals&lt;/title&gt;</span>
+<span class="note">↑ 77 characters — acceptable, brand stays visible</span>
+
+<span class="old">&lt;meta name="description" content="Elrisa Chemicals produces bio-based and conventional polyols in Ghana and West Africa for polyurethane (PUR), polyisocyanurate (PIR), PU coatings, and adhesives. Available in polyester grades with controlled hydroxyl value and viscosity. Contact for pricing."&gt;</span>
+<span class="new">&lt;meta name="description" content="CNSL-derived bio-based and conventional polyester polyols for PUR foam, PIR insulation, PU coatings, and adhesives. Manufactured in Ghana, exported globally. Controlled hydroxyl value. Request specifications and export pricing."&gt;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS PAGE -->
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">products.html — Zero clicks from 62 impressions at rank 20 — needs a specific value hook</div>
+          <div class="task-why">
+            <b>Why:</b> This page is the gateway to everything Elrisa sells. Ranking 20 means it is on page 2. The snippet needs to tell a buyer immediately what they will find here and why Elrisa is the right source.
+          </div>
+          <div class="code-block">
+<span class="label">File: pages/products.html</span>
+<span class="new">&lt;title&gt;Specialty Chemicals from CNSL | Products — Elrisa Chemicals Ghana&lt;/title&gt;</span>
+
+<span class="new">&lt;meta name="description" content="Cashew nut shell liquid (CNSL), bio-based polyols, phenol-free phenolic resins, and contract chemical processing — derived from renewable cashew agricultural residues in Ghana and exported globally. View full product range."&gt;</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SITEMAP -->
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Verify XML sitemap is submitted in Google Search Console</div>
+          <div class="task-why">
+            <b>Why:</b> Only 8 pages are currently indexed. A submitted sitemap tells Google exactly which URLs to index and how often they change. Go to Google Search Console → Sitemaps → check if sitemap.xml is submitted and showing no errors. If it is missing, submit it.
+          </div>
+          <div class="code-block">
+<span class="label">Google Search Console → Sitemaps</span>
+<span class="note">URL to submit: https://elrisachemical.com/sitemap.xml</span>
+<span class="note">If sitemap.xml does not exist on the server, create one listing all 11 pages.</span>
+<span class="note">Each &lt;url&gt; entry should have &lt;loc&gt;, &lt;lastmod&gt;, and &lt;changefreq&gt;.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERNAL LINKS -->
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">Add prominent internal links from homepage to /cnsl, /polyols, /phenolic-resins</div>
+          <div class="task-why">
+            <b>Why:</b> The homepage ranks at position 2.54 — it has authority. That authority needs to flow to the product pages. If the homepage does not contain explicit, visible links to the three main product pages, Google is not passing that ranking power forward. Each product should be mentioned with a descriptive anchor text link (not just "click here" — use the actual product name as the link text).
+          </div>
+          <div class="code-block">
+<span class="label">Example anchor text — use this exact phrasing for internal links</span>
+<span class="new">Cashew Nut Shell Liquid (CNSL)</span>   → links to /pages/cnsl.html
+<span class="new">Bio-Based Polyols</span>                  → links to /pages/polyols.html
+<span class="new">Phenol-Free Phenolic Resins</span>        → links to /pages/phenolic-resins.html
+<span class="note">Do not use: "learn more", "click here", "our products", "view here"</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end tasks -->
+
+
+  <!-- ═══════════════════════════════════════════════
+       PHASE 2: NEW PAGES
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag p2">Phase 2 · This Month</span>
+    <h2>New landing pages targeting high-impression, low-rank queries</h2>
+    <span class="timeframe">30 days · Content creation required</span>
+  </div>
+  <p style="color:var(--ink-dim);font-size:13px;margin-bottom:20px;max-width:70ch">These queries are already generating impressions — Google knows they are relevant to the site. The problem is the pages ranking for them are too generic. A dedicated, focused page for each query will tell Google: this page is specifically about this topic.</p>
+
+  <!-- PAGE BRIEF 1 -->
+  <div class="page-brief" style="border-left:3px solid var(--good)">
+    <div class="pb-head">
+      <h3>Page 1 — Phenol-Free Phenolic Resin <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--good);margin-left:8px;">✓ CREATED</span></h3>
+      <span class="url">/pages/phenol-free-phenolic-resin.html</span>
+    </div>
+    <span class="target-query">Target query: "phenolic resin phenol free" · 47 impressions · rank 79.1 · 0 clicks</span>
+    <div class="data-row">
+      <span class="stat">Current rank: <b>79.1</b></span>
+      <span class="stat">Impressions: 47</span>
+      <span class="stat">Clicks: 0</span>
+      <span class="stat">Opportunity: High</span>
+    </div>
+    <div class="brief-content">
+      <strong>Suggested title tag:</strong> <code style="font-family:'JetBrains Mono',monospace;background:var(--panel-2);padding:2px 6px;border-radius:3px;font-size:12px;color:#a9e34b">"Phenol-Free Phenolic Resin from CNSL | Formaldehyde &amp; Phenol Alternatives — Elrisa Chemicals"</code>
+      <br><br>
+      <strong>Suggested meta description:</strong> CNSL-derived phenolic resins formulated without petrochemical phenol — suitable for friction brake linings, composites, and industrial laminates. A bio-based resin from renewable cashew agricultural residues sourced in Ghana.
+      <br><br>
+      <strong>What the page should cover:</strong>
+      <ul>
+        <li>What makes CNSL-based resins naturally phenol-free (the chemistry in plain language)</li>
+        <li>Applications: friction materials (brake pads, clutch facings), wood composites, laminates, electrical insulation</li>
+        <li>Why phenol-free matters to the buyer: regulatory compliance, reduced toxicity, sustainability claims, bio-based content certification potential</li>
+        <li>How Elrisa's CNSL source in Ghana positions the product within the supply chain</li>
+        <li>Clear enquiry CTA for specifications and pricing</li>
+      </ul>
+      <strong>Schema to add:</strong> Product schema with category "Bio-Based Phenolic Resin", FAQ schema for "What is a phenol-free phenolic resin?" and "Is CNSL resin phenol-free?"
+      <br><br>
+      <strong>Internal links FROM this page:</strong> Link to /cnsl.html (source material), /contract-processing.html (custom formulation).
+    </div>
+  </div>
+
+  <!-- PAGE BRIEF 2 -->
+  <div class="page-brief" style="border-left:3px solid var(--good)">
+    <div class="pb-head">
+      <h3>Page 2 — CNSL for Friction Materials <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--good);margin-left:8px;">✓ CREATED</span></h3>
+      <span class="url">/pages/cnsl-friction-materials.html</span>
+    </div>
+    <span class="target-query">Target queries: "biobased resin for friction" (rank 73) · "cnsl resin" (rank 72.5) · "cnsl liquid" (rank 72.5)</span>
+    <div class="data-row">
+      <span class="stat">Combined impressions: <b>25</b></span>
+      <span class="stat">Current ranks: <b>72–73</b></span>
+      <span class="stat">Clicks: 0</span>
+    </div>
+    <div class="brief-content">
+      <strong>Suggested title tag:</strong> <code style="font-family:'JetBrains Mono',monospace;background:var(--panel-2);padding:2px 6px;border-radius:3px;font-size:12px;color:#a9e34b">"CNSL for Friction Materials | Bio-Based Resin &amp; Oil for Brake Pads — Elrisa Chemicals Ghana"</code>
+      <br><br>
+      <strong>Suggested meta description:</strong> Cashew nut shell liquid (CNSL) and CNSL-derived resins for friction material formulations — brake pads, clutch facings, and industrial friction linings. Bio-based, phenol-free, and Ghana-sourced. Request technical enquiry.
+      <br><br>
+      <strong>What the page should cover:</strong>
+      <ul>
+        <li>CNSL's role in friction materials: its natural anacardic acid and cardanol content create ideal binding and heat-resistance properties</li>
+        <li>Technical CNSL (friction dust) vs. CNSL resin — what each form does in a friction formulation</li>
+        <li>Why friction material manufacturers are moving toward bio-based binders (regulatory pressure, sustainability sourcing)</li>
+        <li>What Elrisa supplies: technical-grade CNSL, CNSL resin, cardanol — and how to enquire</li>
+        <li>Geography: shipped from Ghana, suitable for buyers in Europe, USA, India, South Korea (markets already finding the site)</li>
+      </ul>
+      <strong>Schema to add:</strong> Product schema for "Technical CNSL" and "CNSL Resin", FAQ schema.
+    </div>
+  </div>
+
+  <!-- PAGE BRIEF 3 -->
+  <div class="page-brief" style="border-left:3px solid var(--good)">
+    <div class="pb-head">
+      <h3>Page 3 — What is CNSL? (Educational + FAQ) <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--good);margin-left:8px;">✓ DONE</span></h3>
+      <span class="url">Expand /pages/cnsl.html with a dedicated FAQ section</span>
+    </div>
+    <span class="target-query">Target query: "what is cnsl" · rank 17 · 6 impressions · 0 clicks</span>
+    <div class="data-row">
+      <span class="stat">Current rank: <b>17</b></span>
+      <span class="stat">One more page away from top 10</span>
+      <span class="stat">FAQ schema = featured snippet potential</span>
+    </div>
+    <div class="brief-content">
+      <strong>Why this matters:</strong> Ranking 17 for "what is cnsl" means Elrisa is almost on page 1. Add a proper FAQ section with structured schema markup and this query could jump to top 5 — and potentially trigger a Google featured snippet (the answer box at the top of results), which generates clicks without any ranking change.
+      <br><br>
+      <strong>FAQ questions to include on the CNSL page:</strong>
+      <ul>
+        <li>What is cashew nut shell liquid (CNSL)?</li>
+        <li>What is CNSL used for in industry?</li>
+        <li>Is CNSL phenol-free?</li>
+        <li>What is the difference between CNSL and cardanol?</li>
+        <li>Where is CNSL produced?</li>
+        <li>What is technical-grade CNSL?</li>
+      </ul>
+      <div class="code-block">
+<span class="label">FAQ Schema to add inside &lt;script type="application/ld+json"&gt; on cnsl.html</span>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is cashew nut shell liquid (CNSL)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cashew nut shell liquid (CNSL) is a naturally occurring phenolic lipid found in the honeycomb structure of the cashew nut shell. It is extracted during cashew processing and is one of the few naturally occurring bio-phenols available at industrial scale. CNSL contains anacardic acid, cardanol, cardol, and 2-methylcardol — compounds that give it unique thermal, chemical, and biological resistance properties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is CNSL phenol-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CNSL is a naturally phenol-free bio-based feedstock. Unlike petrochemical phenol derived from benzene, CNSL is sourced from renewable agricultural cashew residues and contains no added synthetic phenol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is CNSL used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CNSL is used across multiple industries as a raw material for friction materials (brake pads, clutch facings), surface coatings, waterproofing compounds, phenolic and epoxy resins, adhesives, and rubber compounding."
+      }
+    }
+  ]
+}</div>
+    </div>
+  </div>
+
+  <!-- PAGE BRIEF 4 -->
+  <div class="page-brief" style="border-left:3px solid var(--good)">
+    <div class="pb-head">
+      <h3>Page 4 — US &amp; Global Export <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--good);margin-left:8px;">✓ CREATED</span></h3>
+      <span class="url">/pages/export-supply.html</span>
+    </div>
+    <span class="target-query">Target market: USA · 227 impressions · rank 19.3 · 15 clicks · 6.6% CTR</span>
+    <div class="data-row">
+      <span class="stat">US impressions: <b>227</b></span>
+      <span class="stat">US rank: <b>19.3 (page 2)</b></span>
+      <span class="stat">Opportunity: Very High</span>
+    </div>
+    <div class="brief-content">
+      <strong>Suggested title tag:</strong> <code style="font-family:'JetBrains Mono',monospace;background:var(--panel-2);padding:2px 6px;border-radius:3px;font-size:12px;color:#a9e34b">"CNSL &amp; Bio-Based Chemicals Export | Ghana Supplier — North America, Europe &amp; Asia | Elrisa"</code>
+      <br><br>
+      <strong>Suggested meta description:</strong> Elrisa Chemicals exports technical-grade CNSL, cardanol, bio-based polyols, and phenol-free resins from Ghana to North America, Europe, and Asia. B2B export enquiries welcome. Request pricing and documentation.
+      <br><br>
+      <strong>What the page should cover:</strong>
+      <ul>
+        <li>Elrisa as a Ghana-based exporter of bio-based specialty chemicals to global markets</li>
+        <li>Products available for export: CNSL, cardanol, polyols, phenolic resins</li>
+        <li>Countries already supplied or targeted: USA, UK, India, South Korea, Côte d'Ivoire, Benin</li>
+        <li>Export documentation capabilities: certificates of origin, quality documentation, packaging specifications</li>
+        <li>How to initiate an export enquiry: the process, timeline, minimum order information</li>
+        <li>Ghana's position as a CNSL source market (cashew crop volumes, port access via Tema)</li>
+      </ul>
+      <strong>Why this will convert:</strong> US buyers searching for CNSL and bio-chemicals are already finding the site (227 impressions). A dedicated export page with the right language converts that interest into direct enquiries.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PHASE 3: AUTHORITY BUILDING
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag p3">Phase 3 · 60–90 Days</span>
+    <h2>Build authority, trust signals, and backlinks</h2>
+    <span class="timeframe">Ongoing · High long-term impact</span>
+  </div>
+
+  <div class="tasks">
+
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Add a Team / Leadership section to the About page</div>
+          <div class="task-why">
+            Google's E-E-A-T guidelines (Experience, Expertise, Authoritativeness, Trustworthiness) reward websites that show the humans behind the company. A Team section with names, brief professional backgrounds, and roles signals to Google that real experts run this business. This is especially critical for B2B chemical supply where trust is a purchase prerequisite. Even two or three profiles are sufficient to start.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">Add company registration details to About page and Organization schema</div>
+          <div class="task-why">
+            <span style="color:var(--good);font-weight:600;">✓ Done — Registered 17 March 2026, Companies Act 2019 (Act 992). Added to about.html "Incorporated in Ghana" card and to Organization schema on both about.html and index.html.</span><br><br>
+            Publish the company registration number, the regulatory body it is registered with, and the year of incorporation. This is public information that acts as a trust anchor. Update the Organization schema on index.html to include this data alongside the existing sameAs links. Cashewderigh.com does this explicitly — it signals legitimacy both to users and search engines.
+          </div>
+          <div class="code-block">
+<span class="label">Add to Organization schema on index.html</span>
+"foundingDate": "YEAR",
+"legalName": "Elrisa Chemical Ltd",
+"identifier": {
+  "@type": "PropertyValue",
+  "name": "Ghana Company Registration",
+  "value": "YOUR-REGISTRATION-NUMBER"
+}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Submit to chemical trade directories for backlinks and discovery</div>
+          <div class="task-why">
+            Backlinks from authoritative industry directories are one of the strongest ranking signals Google uses. These directories are trusted, industry-specific, and will bring direct buyer traffic in addition to improving search rankings. No physical address is required for most of these.
+          </div>
+          <div class="code-block">
+<span class="label">Priority directories to submit to</span>
+1. Kompass (global B2B directory)         kompass.com
+2. Chemical Information Services (ICIS)   icis.com — supplier listing
+3. ChemicalBook                           chemicalbook.com
+4. ChemBuyersGuide                        chembuyersguide.com
+5. Europages                              europages.com — West Africa exporters
+6. ECVV (global trade)                    ecvv.com
+7. Tradekey                               tradekey.com
+8. Ghana Export Promotion Authority       gepaghana.org — official listing
+9. Ghana Free Zones Authority directory   if applicable
+10. Made-in-Africa / Africa exporter dirs regional trade listings</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Google Business Profile — register as a service-area business (no address needed)</div>
+          <div class="task-why">
+            <b>This directly addresses your concern about not having a physical location.</b> Google Business Profile allows "service-area businesses" which serve customers at the customer's location or remotely — no displayed storefront address is required. Registering as a service-area business covering Ghana and international markets will create a Knowledge Panel in Google Search, add the business to Google Maps as an entity, and strengthen the brand's overall presence. This is one of the strongest local/brand authority signals available.
+          </div>
+          <div class="code-block">
+<span class="label">How to register without a physical address</span>
+1. Go to business.google.com
+2. Select "I deliver goods and services to customers at their location"
+3. Set service area: Ghana, West Africa (and expand to global if needed)
+4. Do NOT enter a storefront address — leave it hidden
+5. Verify via phone or postcard (sent to a PO box or registered address)
+<span class="note">Once live, Google may show the business in "chemicals supplier Ghana" searches</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Add quality and process language across product pages</div>
+          <div class="task-why">
+            Cashewderigh.com mentions a 24/7 laboratory. Elrisa does not need a physical lab to use quality language — describe the quality parameters that matter to buyers: purity specifications, moisture content, packaging standards, storage conditions, and what documentation is available (COA format, SDS, etc.). This signals to buyers — and to Google — that Elrisa understands the technical requirements of its market.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Lab page — defer until there is enough real content to fill it honestly</div>
+          <div class="task-why">
+            <b>Decision (22 May 2026):</b> Elrisa has an in-house laboratory at its corporate office. A brief, accurate description has been added to the About page — this is the correct placement for now.<br><br>
+            <b>Why not a standalone lab page yet:</b> A dedicated lab page with thin content ("we have a lab") would score as low-quality in Google's E-E-A-T evaluation and could actively harm ranking rather than help it. Cashewderigh.com's "24/7 laboratory" mention works because it is embedded in a page with broader operational context. A standalone page requires substance to justify its existence.<br><br>
+            <b>What the page needs before it should be created:</b>
+            <ul style="margin:8px 0 4px 16px;line-height:1.8;font-size:13px;color:var(--ink-dim)">
+              <li>Specific tests conducted (e.g. viscosity, acid value, free CNSL content, cardanol purity, moisture)</li>
+              <li>Equipment or methods referenced (e.g. ASTM D445, titration, refractometer)</li>
+              <li>Quality parameters checked per batch</li>
+              <li>Any third-party certifications or external lab partnerships</li>
+              <li>How results are documented and shared with buyers (COA format, SDS)</li>
+            </ul>
+            <b>When ready, this page becomes a strong E-E-A-T signal</b> — directly competing with Cashewderigh's "24/7 laboratory" advantage, while differentiating Elrisa with specific, verifiable quality claims rather than vague marketing language. It also unlocks schema markup (LabAnalysis, QualityControl) and potential featured snippet opportunities for "cnsl quality testing" type queries.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task done">
+      <div class="task-top">
+        <span class="task-status done" onclick="cycleStatus(this)">Done</span>
+        <div class="task-content">
+          <div class="task-title">Add BreadcrumbList schema to all product pages</div>
+          <div class="task-why">
+            <span style="color:var(--good);font-weight:600;">✓ Done — BreadcrumbList schema added to cnsl.html (was already there), polyols.html (was already there), products.html (added), about.html (was already there). All new pages also include it.</span><br><br>
+            Breadcrumb schema makes Google show the page path in search results (e.g., "elrisachemical.com › Products › CNSL"). This visually occupies more space in the results page, makes the listing look more structured, and increases CTR.
+          </div>
+          <div class="code-block">
+<span class="label">Template — add inside &lt;script type="application/ld+json"&gt;</span>
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://elrisachemical.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://elrisachemical.com/pages/products.html" },
+    { "@type": "ListItem", "position": 3, "name": "PAGE NAME", "item": "https://elrisachemical.com/pages/PAGE.html" }
+  ]
+}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PHASE 4: MONITORING
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag p4">Phase 4 · Ongoing</span>
+    <h2>What to measure — monthly GSC review targets</h2>
+    <span class="timeframe">Monthly check-in</span>
+  </div>
+
+  <div class="panel-wrap">
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Current (May 2026)</th>
+          <th>Target (60 Days)</th>
+          <th>Target (90 Days)</th>
+          <th>How to Move It</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="metric-label">Average position</span></td>
+          <td><span class="metric-now">22.9</span></td>
+          <td><span class="metric-target">&lt; 18</span></td>
+          <td><span class="metric-target">&lt; 15</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">New landing pages + internal linking</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">Total clicks</span></td>
+          <td><span class="metric-now">43</span></td>
+          <td><span class="metric-target">&gt; 80</span></td>
+          <td><span class="metric-target">&gt; 150</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Snippet rewrites (Phase 1) are the fastest lever</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">Desktop CTR</span></td>
+          <td><span class="metric-now">3.15%</span></td>
+          <td><span class="metric-target">&gt; 5%</span></td>
+          <td><span class="metric-target">&gt; 7%</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Metadata rewrites (Phase 1)</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">Phenolic resin clicks</span></td>
+          <td><span class="metric-now">0 clicks, rank 79</span></td>
+          <td><span class="metric-target">Any clicks, rank &lt; 40</span></td>
+          <td><span class="metric-target">rank &lt; 20</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">New phenol-free dedicated page</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">US clicks</span></td>
+          <td><span class="metric-now">15 clicks</span></td>
+          <td><span class="metric-target">&gt; 25 clicks</span></td>
+          <td><span class="metric-target">&gt; 40 clicks</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Export page + US-specific copy</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">Indexed pages</span></td>
+          <td><span class="metric-now">8 pages</span></td>
+          <td><span class="metric-target">12–13 pages</span></td>
+          <td><span class="metric-target">15+</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">New pages from Phase 2 + sitemap</td>
+        </tr>
+        <tr>
+          <td><span class="metric-label">Queries with clicks</span></td>
+          <td><span class="metric-now">0 of 31 commercial queries</span></td>
+          <td><span class="metric-target">&gt; 5 commercial queries clicking</span></td>
+          <td><span class="metric-target">&gt; 10 commercial queries clicking</span></td>
+          <td style="color:var(--ink-dim);font-size:12px">Phase 1 rewrites + Phase 2 pages</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:16px">
+      <b>GSC tip:</b> Set up email alerts in Google Search Console for significant drops in impressions or position. Check the "Performance" report monthly — filter by query, then by page, to track which specific changes are producing results. Changes from Phase 1 snippet rewrites typically show up within 1–3 weeks of Google re-crawling the page.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       GOOGLE SEO GUIDE — KEY RULES APPLIED TO ELRISA
+  ═══════════════════════════════════════════════ -->
+  <div class="section-head">
+    <span class="phase-tag insight">Reference</span>
+    <h2>Google SEO Starter Guide — rules that apply directly to this site</h2>
+  </div>
+
+  <div class="tasks">
+
+    <div class="task todo" style="border-left-color:var(--blue)">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Rule: Title tags must be unique per page and accurately describe that page only</div>
+          <div class="task-why">Google's guide states: "a good title is unique to the page, clear and concise, and accurately describes the contents." Having both cnsl.html and phenolic-resins.html mention "bio-based" and "Ghana" without differentiation makes Google unsure which page to rank for which query. Each page title must name its specific product and its specific benefit — not a generic brand tagline.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo" style="border-left-color:var(--blue)">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Rule: Write naturally for the buyer, not for the search engine</div>
+          <div class="task-why">Google explicitly warns against keyword stuffing. The polyols.html keywords meta tag currently contains 35 separate keyword phrases — Google ignores this tag entirely. Remove it or reduce it. Instead, use the target keywords naturally once or twice in the page headings and body copy. Write the way a buyer talks: "phenol-free phenolic resin for brake pads" is a sentence a buyer writes. Use that exact phrase in a heading.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo" style="border-left-color:var(--blue)">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Rule: Use descriptive alt text on all product images</div>
+          <div class="task-why">Google's guide specifically calls out image alt text as both an accessibility requirement and a search signal. Alt text should describe the image in relation to the content, not just the file name. Example: instead of alt="CNS.jpeg" use alt="Cashew nut shells being processed for CNSL extraction in Ghana". This also enters Elrisa into Google Images results — a search channel being entirely missed currently.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo" style="border-left-color:var(--blue)">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Rule: Structured data enables enhanced search result features</div>
+          <div class="task-why">Google's guide states structured data (schema.org) enables "special features in search results including review stars, carousels, and more." The FAQ schema recommended in Phase 2 is the most accessible of these for Elrisa. Once FAQ schema is live on the CNSL page, Google may display an expanded FAQ directly in search results — this makes the listing taller, more visible, and significantly increases CTR without any rank change.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="task todo" style="border-left-color:var(--blue)">
+      <div class="task-top">
+        <span class="task-status todo" onclick="cycleStatus(this)">To Do</span>
+        <div class="task-content">
+          <div class="task-title">Rule: Content should demonstrate expertise — not just describe it</div>
+          <div class="task-why">Google rewards pages that show expertise through specific, accurate detail. A page that says "CNSL is used in many industrial applications" is generic. A page that says "CNSL's naturally long C15 alkyl side chain gives it thermal stability above 200°C — making it the preferred bio-based binder in friction formulations" demonstrates knowledge. That specificity ranks. Write product content at the level a buyer who understands the chemistry would find useful — not at the level of a general overview.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ELRISA CHEMICAL LTD · SEO ACTION PLAN · INTERNAL USE · CREATED 21 MAY 2026
+  </div>
+
+</div>
+
+<script>
+  function cycleStatus(el) {
+    const states = ['todo', 'doing', 'done'];
+    const labels = ['To Do', 'In Progress', 'Done'];
+    const current = states.findIndex(s => el.classList.contains(s));
+    const next = (current + 1) % states.length;
+
+    states.forEach(s => el.classList.remove(s));
+    el.classList.add(states[next]);
+    el.textContent = labels[next];
+
+    // update parent task border
+    const task = el.closest('.task');
+    states.forEach(s => task.classList.remove(s));
+    task.classList.add(states[next]);
+  }
+</script>
+</body>
+</html>
