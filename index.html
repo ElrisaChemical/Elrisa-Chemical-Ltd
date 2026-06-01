@@ -77,6 +77,238 @@
   <link rel="stylesheet" href="css/enhancements.css?v=1.1">
   <link rel="icon" type="image/png" href="images/ElrisaIcon.png">
   <style>
+    /* ── We're Hiring — inline strip ── */
+    .hiring-strip {
+      background: linear-gradient(110deg, var(--clr-deep) 0%, #0D3B2E 50%, var(--clr-forest) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+    .hiring-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 90% 50%, rgba(16,185,129,0.13) 0%, transparent 55%),
+                        radial-gradient(circle at 10% 50%, rgba(132,204,22,0.06) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .hiring-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 52px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .hiring-strip-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      flex: 1;
+    }
+    .hiring-strip-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      background: rgba(16,185,129,0.15);
+      border: 1px solid rgba(16,185,129,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--clr-emerald);
+    }
+    .hiring-strip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-emerald);
+      margin-bottom: 8px;
+    }
+    .hiring-strip-badge .hbdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--clr-emerald);
+      animation: hbpulse 1.6s ease-in-out infinite;
+    }
+    @keyframes hbpulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.75); }
+    }
+    .hiring-strip-text h2 {
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .hiring-strip-text p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .hiring-strip-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .hiring-strip-perks span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+    }
+    .hiring-strip-perks span svg { color: var(--clr-emerald); }
+    .hiring-strip-cta {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .hiring-strip-cta .btn-hire {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--clr-emerald);
+      color: var(--clr-deep);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      transition: var(--transition);
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .hiring-strip-cta .btn-hire:hover {
+      background: var(--clr-lime);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(16,185,129,0.35);
+    }
+    .hiring-strip-cta .btn-hire-ghost {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+    .hiring-strip-cta .btn-hire-ghost:hover { color: rgba(255,255,255,0.8); }
+    @media (max-width: 768px) {
+      .hiring-strip-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        padding: 40px 0;
+      }
+      .hiring-strip-cta { align-items: flex-start; }
+    }
+
+    /* ── Floating hiring badge ── */
+    .hiring-float {
+      position: fixed;
+      bottom: 88px;
+      right: 24px;
+      z-index: 990;
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .hiring-float.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .hiring-float.dismissed { display: none; }
+    .hiring-float-card {
+      background: var(--clr-deep);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(16,185,129,0.08);
+      padding: 16px 18px;
+      width: 228px;
+      position: relative;
+    }
+    .hiring-float-close {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.3);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    .hiring-float-close:hover { color: rgba(255,255,255,0.7); }
+    .hiring-float-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+    }
+    .hiring-float-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--clr-emerald);
+      flex-shrink: 0;
+      animation: hbpulse 1.6s ease-in-out infinite;
+    }
+    .hiring-float-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-emerald);
+    }
+    .hiring-float-card h4 {
+      font-size: 0.9rem;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .hiring-float-card p {
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .hiring-float-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--clr-emerald);
+      color: var(--clr-deep);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 9px 14px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .hiring-float-link:hover {
+      background: var(--clr-lime);
+      transform: translateY(-1px);
+    }
+
     /* Home product cards */
     .home-prod-card {
       background: var(--clr-white);
@@ -281,6 +513,7 @@
             <a href="pages/contract-processing.html">Contract Processing</a>
           </div>
         </div>
+        <a href="pages/careers.html">Careers</a>
         <a href="pages/contact.html" class="nav-cta">Get In Touch</a>
       </div>
 
@@ -311,6 +544,7 @@
         <a href="pages/contract-processing.html">Contract Processing</a>
       </div>
     </div>
+    <a href="pages/careers.html">Careers</a>
     <a href="pages/contact.html">Contact</a>
     <a href="pages/contact.html" class="mobile-cta">Get In Touch</a>
   </div>
@@ -645,6 +879,51 @@
     </div>
   </section>
 
+  <!-- We're Hiring Strip -->
+  <section class="hiring-strip">
+    <div class="container">
+      <div class="hiring-strip-inner reveal">
+
+        <div class="hiring-strip-left">
+          <div class="hiring-strip-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" width="26" height="26"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          </div>
+          <div class="hiring-strip-text">
+            <div class="hiring-strip-badge"><span class="hbdot"></span> We're Hiring</div>
+            <h2>Join the Team Building<br>Africa's Chemical Future</h2>
+            <p>We have an open position for a Research Chemist / Scientist focused on polymer innovation. Entry-level to experienced — all welcome.</p>
+            <div class="hiring-strip-perks">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                Full-Time · Ghana
+              </span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                BSc / MSc Chemistry or related
+              </span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                0–5+ years experience
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hiring-strip-cta">
+          <a href="pages/careers.html" class="btn-hire">
+            View Role &amp; Apply
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="mailto:career@elrisachemical.com" class="btn-hire-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            or email career@elrisachemical.com
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section centered">
     <div class="container">
@@ -703,7 +982,7 @@
           <h4>Connect</h4>
           <a href="pages/contact.html">Contact Us</a>
           <a href="pages/contact.html#partnerships">Partnerships</a>
-          <a href="pages/contact.html#careers">Careers</a>
+          <a href="pages/careers.html">Careers</a>
         </div>
       </div>
 
@@ -716,6 +995,23 @@
     </div>
   </footer>
 
+  <!-- Floating Hiring Badge -->
+  <div class="hiring-float" id="hiringFloat" aria-label="We're hiring">
+    <div class="hiring-float-card">
+      <button class="hiring-float-close" id="hiringFloatClose" aria-label="Dismiss">&times;</button>
+      <div class="hiring-float-top">
+        <span class="hiring-float-dot"></span>
+        <span class="hiring-float-label">We're Hiring</span>
+      </div>
+      <h4>Research Chemist / Scientist</h4>
+      <p>Polymer Innovation &amp; Product Development · Ghana · Full-Time</p>
+      <a href="pages/careers.html" class="hiring-float-link">
+        See the role
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+
   <!-- Back to top -->
   <button class="back-to-top" aria-label="Back to top">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
@@ -724,5 +1020,29 @@
   <script src="js/main.js?v=1.1"></script>
   <script src="js/enhancements.js?v=1.1"></script>
   <script src="js/seo-security.js?v=1.1"></script>
+  <script>
+    (function () {
+      var float = document.getElementById('hiringFloat');
+      var closeBtn = document.getElementById('hiringFloatClose');
+      if (!float || !closeBtn) return;
+
+      var shown = false;
+      var dismissed = sessionStorage.getItem('hiringDismissed');
+      if (dismissed) { float.classList.add('dismissed'); return; }
+
+      window.addEventListener('scroll', function () {
+        if (!shown && window.scrollY > 480) {
+          shown = true;
+          float.classList.add('visible');
+        }
+      }, { passive: true });
+
+      closeBtn.addEventListener('click', function () {
+        float.classList.remove('visible');
+        setTimeout(function () { float.classList.add('dismissed'); }, 400);
+        sessionStorage.setItem('hiringDismissed', '1');
+      });
+    })();
+  </script>
 </body>
 </html>
