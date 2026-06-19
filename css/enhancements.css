@@ -138,13 +138,18 @@
     transition: transform 0.3s ease;
   }
 
+  /* Strip phone number and all dividers from top bar on mobile —
+     keeps the bar a single slim line so the navbar can sit below it */
+  a[href^="tel:"].top-bar-item { display: none; }
+  .top-bar-divider { display: none; }
+
   .top-bar.hidden {
     transform: translateY(-100%);
   }
 
   .navbar {
     position: fixed;
-    top: 40px;
+    top: 38px;
     transition: top 0.3s ease, background 0.3s ease;
   }
 
@@ -152,8 +157,8 @@
     top: 0;
   }
 
-  .page-hero { padding-top: 160px; }
-  .hero-content { padding-top: 140px; }
+  .page-hero { padding-top: 158px; }
+  .hero-content { padding-top: 138px; }
 }
 
 /* ============================================
