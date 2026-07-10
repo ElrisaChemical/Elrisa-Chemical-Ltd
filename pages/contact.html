@@ -246,6 +246,7 @@
             <a href="polyols.html">Bio-Based Polyols</a>
             <a href="phenolic-resins.html">Phenol-Free Phenolic Resins</a>
             <a href="contract-processing.html">Contract Processing</a>
+            <a href="bpo-paste-mekp.html">BPO Paste & MEKP</a>
           </div>
         </div>
         <a href="contact.html" class="nav-cta active">Get In Touch</a>
@@ -269,6 +270,7 @@
         <a href="polyols.html">Polyols</a>
         <a href="phenolic-resins.html">Phenolic Resins</a>
         <a href="contract-processing.html">Contract Processing</a>
+        <a href="bpo-paste-mekp.html">BPO Paste & MEKP</a>
       </div>
     </div>
     <a href="contact.html" class="active">Contact</a>
@@ -599,6 +601,29 @@
       // Scroll to the form
       form.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+
+    // Pre-fill inquiry type + message when arriving from a product page CTA
+    // (e.g. contact.html?product=BPO+Paste+%2F+MEKP+Catalyst&intent=sample)
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const product = params.get('product');
+      if (!product) return;
+      const intent = params.get('intent');
+
+      const inquiry = document.getElementById('inquiry');
+      if (inquiry) inquiry.value = 'Product Inquiry / Buyer';
+
+      const messageField = document.getElementById('message');
+      if (messageField && !messageField.value) {
+        if (intent === 'sample') {
+          messageField.value = `Hi, I'd like to request a free sample of ${product}.`;
+        } else if (intent === 'quote') {
+          messageField.value = `Hi, I'd like to request a quote for ${product}.`;
+        } else {
+          messageField.value = `Hi, I'm interested in ${product}. Please share more details.`;
+        }
+      }
+    })();
 
     // Show success message if redirected back after submission
     if (window.location.search.includes('success=true')) {

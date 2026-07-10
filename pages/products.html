@@ -99,6 +99,27 @@
           "seller": { "@type": "Organization", "name": "Elrisa Chemicals Ltd" },
           "url": "https://elrisachemical.com/pages/contact.html"
         }
+      },
+      {
+        "@type": "Product",
+        "position": 4,
+        "name": "BPO Paste & MEKP Catalyst",
+        "description": "Benzoyl peroxide (BPO) paste and MEKP liquid catalyst — curing agents for polyester, vinyl ester and acrylic resins, supplied by Elrisa Chemicals.",
+        "image": "https://elrisachemical.com/images/bpo-paste-mekp-hero.jpeg",
+        "brand": { "@type": "Brand", "name": "Elrisa Chemicals" },
+        "category": "Organic Peroxide Curing Agents & Resin Catalysts",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "price": "0",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "description": "Contact for pricing"
+          },
+          "seller": { "@type": "Organization", "name": "Elrisa Chemicals Ltd" },
+          "url": "https://elrisachemical.com/pages/contact.html"
+        }
       }
     ]
   }
@@ -223,6 +244,7 @@
             <a href="polyols.html">Bio-Based Polyols</a>
             <a href="phenolic-resins.html">Phenol-Free Phenolic Resins</a>
             <a href="contract-processing.html">Contract Processing</a>
+            <a href="bpo-paste-mekp.html">BPO Paste & MEKP</a>
           </div>
         </div>
         <a href="contact.html" class="nav-cta">Get In Touch</a>
@@ -246,6 +268,7 @@
         <a href="polyols.html">Polyols</a>
         <a href="phenolic-resins.html">Phenolic Resins</a>
         <a href="contract-processing.html">Contract Processing</a>
+        <a href="bpo-paste-mekp.html">BPO Paste & MEKP</a>
       </div>
     </div>
     <a href="contact.html">Contact</a>
@@ -393,6 +416,36 @@
             <div class="product-cta" style="display:flex;flex-direction:column;gap:10px;">
               <a href="contract-processing.html" class="btn btn-primary" style="width:100%;text-align:center;">Learn More →</a>
               <button onclick="openProductModal('custom')" class="btn btn-outline" style="width:100%;">Discuss Your Needs</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- BPO Paste & MEKP Catalyst -->
+        <div class="product-card">
+          <div class="product-header">
+            <div class="product-number" style="color: var(--clr-forest);">05</div>
+            <h3>BPO Paste & MEKP Catalyst</h3>
+            <p>Curing agents for polyester, vinyl ester and acrylic resins — BPO paste and MEKP liquid catalyst, supplied by Elrisa Chemicals.</p>
+          </div>
+          <div class="product-details">
+            <h4>Applications</h4>
+            <div class="app-tags">
+              <span>Fibreglass / GRP</span>
+              <span>Body filler</span>
+              <span>Artificial marble</span>
+              <span>Chemical anchoring</span>
+              <span>Gel coats</span>
+              <span>Road marking</span>
+            </div>
+            <h4>Formulations</h4>
+            <div class="app-tags">
+              <span>BPO Premium Grade</span>
+              <span>BPO Standard Grade</span>
+              <span>MEKP Liquid Catalyst</span>
+            </div>
+            <div class="product-cta" style="display:flex;flex-direction:column;gap:10px;">
+              <a href="bpo-paste-mekp.html" class="btn btn-primary" style="width:100%;text-align:center;">Learn More →</a>
+              <button onclick="openProductModal('bpomekp')" class="btn btn-outline" style="width:100%;">Request a Sample / Quote</button>
             </div>
           </div>
         </div>
@@ -1187,6 +1240,54 @@
           </div>
         `
       },
+      bpomekp: {
+        badge: 'BPO Paste & MEKP',
+        badgeColor: 'background:rgba(13,75,60,0.1);color:#0D4B3C;',
+        title: 'Request a Sample or Quote',
+        subtitle: 'Get grade recommendations, packaging options, and pricing for BPO paste and MEKP catalyst.',
+        subject: 'BPO Paste / MEKP Request — Elrisa Website',
+        fields: `
+          <div class="pm-section-label">BPO Paste / MEKP Requirements</div>
+          <div class="pm-field">
+            <label>Product Interested In</label>
+            <div class="pm-check-group">
+              <label><input type="checkbox" name="BPO/MEKP Product" value="BPO Paste — Premium Grade"><span>BPO Paste — Premium Grade</span></label>
+              <label><input type="checkbox" name="BPO/MEKP Product" value="BPO Paste — Standard Grade"><span>BPO Paste — Standard Grade</span></label>
+              <label><input type="checkbox" name="BPO/MEKP Product" value="MEKP Liquid Catalyst"><span>MEKP Liquid Catalyst</span></label>
+              <label><input type="checkbox" name="BPO/MEKP Product" value="Not sure — need guidance"><span>Not sure — need guidance</span></label>
+            </div>
+          </div>
+          <div class="pm-field">
+            <label>Intended Application</label>
+            <select name="BPO/MEKP Application">
+              <option value="">Select application</option>
+              <option value="Fibreglass / GRP lamination">Fibreglass / GRP lamination</option>
+              <option value="Body filler / automotive repair">Body filler / automotive repair</option>
+              <option value="Artificial / cultured marble">Artificial / cultured marble</option>
+              <option value="Chemical anchoring / construction">Chemical anchoring / construction</option>
+              <option value="Gel coats">Gel coats</option>
+              <option value="Road marking (MMA)">Road marking (MMA)</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="pm-row">
+            <div class="pm-field">
+              <label>Preferred Packaging</label>
+              <select name="BPO/MEKP Packaging">
+                <option value="">Select packaging</option>
+                <option value="Tubes / cartridges / cans (sample)">Tubes / cartridges / cans (sample)</option>
+                <option value="Buckets (5-25 kg)">Buckets (5–25 kg)</option>
+                <option value="Drums (150-250 kg)">Drums (150–250 kg)</option>
+                <option value="Not sure — need guidance">Not sure — need guidance</option>
+              </select>
+            </div>
+            <div class="pm-field">
+              <label>Estimated Volume</label>
+              <input type="text" name="BPO/MEKP Volume" placeholder="e.g. 50 kg per month">
+            </div>
+          </div>
+        `
+      },
       quote: {
         badge: 'Quote Request',
         badgeColor: 'background:rgba(245,158,11,0.15);color:#92400E;',
@@ -1202,6 +1303,7 @@
               <label><input type="checkbox" name="Quote Products" value="Bio Polyols"><span>Bio Polyols</span></label>
               <label><input type="checkbox" name="Quote Products" value="Phenolic Resins"><span>Phenolic Resins</span></label>
               <label><input type="checkbox" name="Quote Products" value="Epoxy Intermediates"><span>Epoxy Intermediates</span></label>
+              <label><input type="checkbox" name="Quote Products" value="BPO Paste / MEKP"><span>BPO Paste / MEKP</span></label>
               <label><input type="checkbox" name="Quote Products" value="Surfactants"><span>Surfactants</span></label>
               <label><input type="checkbox" name="Quote Products" value="Custom Formulation"><span>Custom Formulation</span></label>
             </div>

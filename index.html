@@ -219,7 +219,7 @@
     }
 
     /* ── Floating hiring badge ── */
-    .hiring-float {
+    .promo-float {
       position: fixed;
       bottom: 88px;
       right: 24px;
@@ -229,13 +229,13 @@
       pointer-events: none;
       transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .hiring-float.visible {
+    .promo-float.visible {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
     }
-    .hiring-float.dismissed { display: none; }
-    .hiring-float-card {
+    .promo-float.dismissed { display: none; }
+    .promo-float-card {
       background: var(--clr-deep);
       border: 1px solid rgba(16,185,129,0.3);
       border-radius: var(--radius-lg);
@@ -244,7 +244,7 @@
       width: 228px;
       position: relative;
     }
-    .hiring-float-close {
+    .promo-float-close {
       position: absolute;
       top: 8px;
       right: 10px;
@@ -257,14 +257,14 @@
       padding: 2px 4px;
       transition: color 0.2s;
     }
-    .hiring-float-close:hover { color: rgba(255,255,255,0.7); }
-    .hiring-float-top {
+    .promo-float-close:hover { color: rgba(255,255,255,0.7); }
+    .promo-float-top {
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 9px;
     }
-    .hiring-float-dot {
+    .promo-float-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -272,26 +272,26 @@
       flex-shrink: 0;
       animation: hbpulse 1.6s ease-in-out infinite;
     }
-    .hiring-float-label {
+    .promo-float-label {
       font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--clr-emerald);
     }
-    .hiring-float-card h4 {
+    .promo-float-card h4 {
       font-size: 0.9rem;
       color: #fff;
       line-height: 1.3;
       margin-bottom: 4px;
     }
-    .hiring-float-card p {
+    .promo-float-card p {
       font-size: 0.77rem;
       color: rgba(255,255,255,0.5);
       line-height: 1.5;
       margin-bottom: 14px;
     }
-    .hiring-float-link {
+    .promo-float-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -304,7 +304,7 @@
       text-decoration: none;
       transition: var(--transition);
     }
-    .hiring-float-link:hover {
+    .promo-float-link:hover {
       background: var(--clr-lime);
       transform: translateY(-1px);
     }
@@ -516,6 +516,7 @@
             <a href="pages/polyols.html">Bio-Based Polyols</a>
             <a href="pages/phenolic-resins.html">Phenol-Free Phenolic Resins</a>
             <a href="pages/contract-processing.html">Contract Processing</a>
+            <a href="pages/bpo-paste-mekp.html">BPO Paste & MEKP</a>
           </div>
         </div>
         <a href="pages/careers.html">Careers</a>
@@ -547,6 +548,7 @@
         <a href="pages/polyols.html">Polyols</a>
         <a href="pages/phenolic-resins.html">Phenolic Resins</a>
         <a href="pages/contract-processing.html">Contract Processing</a>
+        <a href="pages/bpo-paste-mekp.html">BPO Paste & MEKP</a>
       </div>
     </div>
     <a href="pages/careers.html">Careers</a>
@@ -785,6 +787,33 @@
     </div>
   </section>
 
+  <!-- Featured Product Spotlight: BPO Paste & MEKP -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="split">
+        <div class="split-img reveal-left">
+          <img src="images/bpo-paste-mekp-hero.jpeg" alt="Elrisa BPO paste bucket and tubes, plus MEKP catalyst" loading="lazy" style="height:400px;width:100%;object-fit:cover;">
+          <div class="accent-block" style="background:linear-gradient(135deg,var(--clr-emerald),var(--clr-lime));"></div>
+        </div>
+        <div class="split-text reveal-right">
+          <span class="section-label">New From Elrisa</span>
+          <h2>BPO Paste &amp; <span class="text-emerald">MEKP Catalyst</span></h2>
+          <p>The curing agents that harden polyester, vinyl ester and acrylic resins — from fibreglass/GRP tanks and boats to body filler, artificial marble and chemical anchoring. Elrisa Chemicals supplies BPO paste and MEKP catalyst across Ghana and West Africa.</p>
+          <div class="app-tags" style="margin:20px 0;">
+            <span>Fibreglass / GRP</span>
+            <span>Body filler</span>
+            <span>Artificial marble</span>
+            <span>Chemical anchoring</span>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="pages/bpo-paste-mekp.html" class="btn btn-primary">Explore BPO Paste &amp; MEKP</a>
+            <a href="pages/contact.html?product=BPO%20Paste%20%2F%20MEKP%20Catalyst&intent=sample#contact-form" class="btn btn-outline">Request a Free Sample</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Applications in Action -->
   <section class="section-pad">
     <div class="container">
@@ -894,21 +923,21 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" width="26" height="26"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
           </div>
           <div class="hiring-strip-text">
-            <div class="hiring-strip-badge"><span class="hbdot"></span> We're Hiring</div>
+            <div class="hiring-strip-badge"><span class="hbdot"></span> Careers</div>
             <h2>Join the Team Building<br>Africa's Chemical Future</h2>
-            <p>We have an open position for a Research Chemist / Scientist focused on polymer innovation. Entry-level to experienced — all welcome.</p>
+            <p>We don't have an open position right now — all current roles are filled. We're always growing, though, so send a speculative application and we'll reach out when a role opens up.</p>
             <div class="hiring-strip-perks">
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                Full-Time · Ghana
+                Ghana-based team
               </span>
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                BSc / MSc Chemistry or related
+                Growing specialty chemicals company
               </span>
               <span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-                0–5+ years experience
+                Speculative applications welcome
               </span>
             </div>
           </div>
@@ -916,12 +945,12 @@
 
         <div class="hiring-strip-cta">
           <a href="pages/careers.html" class="btn-hire">
-            View Role &amp; Apply
+            See Careers Page
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
-          <a href="mailto:career@elrisachemical.com" class="btn-hire-ghost">
+          <a href="mailto:career@elrisachemical.com?subject=Speculative%20Application%20%E2%80%94%20Elrisa%20Chemicals" class="btn-hire-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-            or email career@elrisachemical.com
+            or send a speculative application
           </a>
         </div>
 
@@ -1001,18 +1030,18 @@
     </div>
   </footer>
 
-  <!-- Floating Hiring Badge -->
-  <div class="hiring-float" id="hiringFloat" aria-label="We're hiring">
-    <div class="hiring-float-card">
-      <button class="hiring-float-close" id="hiringFloatClose" aria-label="Dismiss">&times;</button>
-      <div class="hiring-float-top">
-        <span class="hiring-float-dot"></span>
-        <span class="hiring-float-label">We're Hiring</span>
+  <!-- Floating Product Promo Badge -->
+  <div class="promo-float" id="promoFloat" aria-label="Featured product: BPO Paste and MEKP Catalyst">
+    <div class="promo-float-card">
+      <button class="promo-float-close" id="promoFloatClose" aria-label="Dismiss">&times;</button>
+      <div class="promo-float-top">
+        <span class="promo-float-dot"></span>
+        <span class="promo-float-label">New Product</span>
       </div>
-      <h4>Research Chemist / Scientist</h4>
-      <p>Polymer Innovation &amp; Product Development · Ghana · Full-Time</p>
-      <a href="pages/careers.html" class="hiring-float-link">
-        See the role
+      <h4>BPO Paste &amp; MEKP Catalyst</h4>
+      <p>Hardener &amp; catalyst for polyester, fibreglass &amp; GRP resins · Ghana</p>
+      <a href="pages/bpo-paste-mekp.html" class="promo-float-link">
+        See the product
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
@@ -1028,12 +1057,12 @@
   <script src="js/seo-security.js?v=1.1"></script>
   <script>
     (function () {
-      var float = document.getElementById('hiringFloat');
-      var closeBtn = document.getElementById('hiringFloatClose');
+      var float = document.getElementById('promoFloat');
+      var closeBtn = document.getElementById('promoFloatClose');
       if (!float || !closeBtn) return;
 
       var shown = false;
-      var dismissed = sessionStorage.getItem('hiringDismissed');
+      var dismissed = sessionStorage.getItem('promoDismissed');
       if (dismissed) { float.classList.add('dismissed'); return; }
 
       window.addEventListener('scroll', function () {
@@ -1046,7 +1075,7 @@
       closeBtn.addEventListener('click', function () {
         float.classList.remove('visible');
         setTimeout(function () { float.classList.add('dismissed'); }, 400);
-        sessionStorage.setItem('hiringDismissed', '1');
+        sessionStorage.setItem('promoDismissed', '1');
       });
     })();
   </script>
