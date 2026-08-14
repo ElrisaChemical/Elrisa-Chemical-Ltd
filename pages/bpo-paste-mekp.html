@@ -258,14 +258,15 @@
     .spec-block-header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
     .spec-block h3 { font-size: 1.3rem; font-weight: 700; }
     .spec-badge { display: inline-block; padding: 3px 12px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: var(--clr-light); color: var(--clr-forest); }
+    .spec-tds-notice { display: flex; gap: 18px; align-items: flex-start; background: var(--clr-light); border: 1.5px dashed rgba(16,185,129,0.35); border-radius: var(--radius-lg); padding: 26px 28px; }
+    .spec-tds-notice-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(16,185,129,0.15); color: var(--clr-emerald); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .spec-tds-notice-icon svg { width: 22px; height: 22px; }
+    .spec-tds-notice-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--clr-deep); margin-bottom: 6px; }
+    .spec-tds-notice-body p { font-size: 0.88rem; color: var(--clr-muted); line-height: 1.7; margin-bottom: 16px; max-width: 540px; }
+    .spec-tds-notice-btn { display: inline-flex; align-items: center; gap: 8px; }
+    .spec-tds-notice-btn svg { width: 16px; height: 16px; }
+    @media (max-width: 560px) { .spec-tds-notice { flex-direction: column; align-items: flex-start; } }
     .spec-intro { font-size: 0.95rem; color: var(--clr-muted); line-height: 1.75; margin-bottom: 26px; }
-    .spec-groups { display: grid; grid-template-columns: 1fr; gap: 26px; }
-    @media (min-width: 900px) { .spec-groups { grid-template-columns: 1fr 1fr; } }
-    .spec-group h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--clr-slate); margin-bottom: 12px; }
-    .spec-group ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
-    .spec-group li { font-size: 0.87rem; color: var(--clr-text); line-height: 1.6; padding-left: 18px; position: relative; }
-    .spec-group li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--clr-emerald); }
-    .spec-group p { font-size: 0.87rem; color: var(--clr-text); line-height: 1.6; }
 
     .industry-card { background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius-md); padding: 20px 22px; transition: var(--transition); }
     .industry-card:hover { border-color: var(--clr-emerald); box-shadow: var(--shadow-md); }
@@ -277,6 +278,26 @@
 
     .btn-whatsapp { background: #25D366; color: #fff; }
     .btn-whatsapp:hover { background: #1DA851; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37,211,102,0.35); }
+
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 116px;
+      right: 32px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45), 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .fab-whatsapp:hover { background: #1DA851; transform: translateY(-4px) scale(1.05); box-shadow: 0 10px 32px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.25); }
+    .fab-whatsapp svg { width: 30px; height: 30px; }
+    @media (max-width: 900px) { .fab-whatsapp { bottom: 84px; right: 20px; width: 50px; height: 50px; } .fab-whatsapp svg { width: 25px; height: 25px; } }
 
     details.faq-item { background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius-lg); padding: 20px 24px; margin-bottom: 12px; }
     details.faq-item summary { font-weight: 600; font-size: 0.98rem; cursor: pointer; color: var(--clr-deep); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
@@ -298,6 +319,20 @@
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
     Products
   </a>
+
+  <!-- Floating WhatsApp Enquiry Button -->
+  <a href="https://wa.me/233556395946?text=Hi%20Elrisa%2C%20I%27d%20like%20to%20ask%20about%20BPO%20paste%20%2F%20MEKP%20catalyst." id="waFab" target="_blank" rel="noopener noreferrer" class="fab-whatsapp" aria-label="Chat with us on WhatsApp about BPO paste and MEKP catalyst">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <script>
+    (function () {
+      var fab = document.getElementById('waFab');
+      if (fab && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        fab.href = 'whatsapp://send?phone=233556395946&text=' + encodeURIComponent("Hi Elrisa, I'd like to ask about BPO paste / MEKP catalyst.");
+        fab.removeAttribute('target');
+      }
+    })();
+  </script>
 
   <!-- Top Info Bar -->
   <div class="top-bar">
@@ -338,7 +373,7 @@
             <div class="nav-dropdown-divider"></div>
             <a href="cnsl.html">Cashew Nut Shell Liquid</a>
             <a href="polyols.html">Bio-Based Polyols</a>
-            <a href="phenolic-resins.html">Phenol-Free Phenolic Resins</a>
+            <a href="phenolic-resins.html">BPA-free Phenolic Resins</a>
             <a href="bpo-paste-mekp.html" class="active">BPO Paste & MEKP</a>
             <a href="contract-processing.html">Contract Processing</a>
           </div>
@@ -511,42 +546,17 @@
           <span class="spec-badge">Premium</span>
         </div>
         <p class="spec-intro">A phthalate-free benzoyl peroxide paste hardener; REACH-compliant, with strong heat resistance that suits warm climates.</p>
-        <div class="spec-groups">
-          <div class="spec-group">
-            <h4>Technical Data</h4>
-            <ul>
-              <li>Chemical: Dibenzoyl Peroxide (BPO) paste</li>
-              <li>Empirical formula C<sub>14</sub>H<sub>10</sub>O<sub>4</sub> · Molecular weight 242.2 g/mol · CAS 94-36-0</li>
-              <li>Dibenzoyl peroxide content: 50%</li>
-              <li>Active oxygen: 3.3%</li>
-              <li>Appearance: creamy paste · Odour: distinctive</li>
-              <li>Insoluble in water · pH: acidic</li>
-              <li>SADT (self-accelerating decomposition temperature): 50°C</li>
-              <li>Recommended storage temperature: 5–25°C</li>
-              <li>Phthalate-free (benzoate-ester plasticizer system) — better heat-degradation resistance and better dissolution in resins and monomers</li>
-              <li>Available in white (neutral), red, blue and red-brown (colour = visual mixing guide; also pigments the cured substrate)</li>
-            </ul>
+        <div class="spec-tds-notice">
+          <div class="spec-tds-notice-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
           </div>
-          <div class="spec-group">
-            <h4>Use &amp; Applications</h4>
-            <ul>
-              <li>Radical polymerization initiator and curing agent for vinyl, acrylic and unsaturated polyester / vinyl ester resins and their co-polymers, used with an accelerator (usually amine)</li>
-              <li>Curing depends on humidity, filler/resin composition, temperature and technique — always test on the actual compound first</li>
-              <li>Application areas: car repair, marine, marble &amp; stone, wood, mining &amp; construction, industrial processes</li>
-            </ul>
-          </div>
-          <div class="spec-group">
-            <h4>Packaging</h4>
-            <p>Tubes, pails, carton box, drums (carton box &amp; drums lined with a PE bag).</p>
-          </div>
-          <div class="spec-group">
-            <h4>Safety &amp; Storage</h4>
-            <ul>
-              <li>Store in original containers, away from flammables, heat, sparks, flames and direct sunlight</li>
-              <li>Keep away from reducing agents, amines, strong acids/bases, accelerators &amp; promoters, copper/heavy metals, driers and rust — contamination can trigger violent decomposition</li>
-              <li>Store 5–25°C; heat causes decomposition and performance loss; freezing damages the emulsion</li>
-              <li>Rotate stock, oldest first (FIFO); never store with food or beverages</li>
-            </ul>
+          <div class="spec-tds-notice-body">
+            <h4>Full Technical Data Sheet Available</h4>
+            <p>Chemical properties, use &amp; applications, packaging options, and safety &amp; storage requirements for this grade are provided in full in the downloadable Technical Data Sheet.</p>
+            <a href="../documents/tds-bpo-paste-phthalate-free-premium.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline spec-tds-notice-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Download TDS (PDF)
+            </a>
           </div>
         </div>
       </div>
@@ -558,41 +568,17 @@
           <span class="spec-badge">Standard</span>
         </div>
         <p class="spec-intro">A standard, cost-effective benzoyl peroxide paste hardener for everyday polyester, vinyl ester and acrylic curing.</p>
-        <div class="spec-groups">
-          <div class="spec-group">
-            <h4>Technical Data</h4>
-            <ul>
-              <li>Chemical: Dibenzoyl Peroxide (BPO) paste</li>
-              <li>Empirical formula C<sub>14</sub>H<sub>10</sub>O<sub>4</sub> · Molecular weight 242.2 g/mol · CAS 94-36-0</li>
-              <li>Dibenzoyl peroxide content: 50%</li>
-              <li>Active oxygen: 3.3%</li>
-              <li>Appearance: creamy paste · Odour: almost odourless</li>
-              <li>Insoluble in water · pH: acidic</li>
-              <li>SADT: 50°C</li>
-              <li>Recommended storage temperature: 5–25°C</li>
-              <li>Standard white/lightly beige; also available in red, blue and red-brown (visual mixing guide)</li>
-            </ul>
+        <div class="spec-tds-notice">
+          <div class="spec-tds-notice-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
           </div>
-          <div class="spec-group">
-            <h4>Use &amp; Applications</h4>
-            <ul>
-              <li>Polymerization initiator and curing agent for vinyl, acrylic, styrene and unsaturated polyester / vinyl ester resins, used with an accelerator (usually amine)</li>
-              <li>Test on the actual compound before use</li>
-              <li>Application areas: car repair, marine, marble &amp; stone, wood, industrial processes</li>
-            </ul>
-          </div>
-          <div class="spec-group">
-            <h4>Packaging</h4>
-            <p>Tubes, jars, pails, carton box, drums (LDPE/HDPE polyethylene).</p>
-          </div>
-          <div class="spec-group">
-            <h4>Safety &amp; Storage</h4>
-            <ul>
-              <li>Store in original containers, away from flammables, heat, sparks, flames and direct sunlight</li>
-              <li>Keep away from reducing agents, amines, strong acids/bases, accelerators &amp; promoters, copper/heavy metals, driers and rust</li>
-              <li>Store 5–25°C; high temperature decomposes it; freezing damages the emulsion</li>
-              <li>Rotate stock, oldest first (FIFO); never store with food or beverages</li>
-            </ul>
+          <div class="spec-tds-notice-body">
+            <h4>Full Technical Data Sheet Available</h4>
+            <p>Chemical properties, use &amp; applications, packaging options, and safety &amp; storage requirements for this grade are provided in full in the downloadable Technical Data Sheet.</p>
+            <a href="../documents/tds-bpo-paste-standard.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline spec-tds-notice-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Download TDS (PDF)
+            </a>
           </div>
         </div>
       </div>
@@ -604,42 +590,17 @@
           <span class="spec-badge">Liquid</span>
         </div>
         <p class="spec-intro">A liquid methyl ethyl ketone peroxide catalyst for curing polyester and vinyl ester resins — the standard initiator for fibreglass / GRP laminating.</p>
-        <div class="spec-groups">
-          <div class="spec-group">
-            <h4>Technical Data</h4>
-            <ul>
-              <li>Chemical: Methyl Ethyl Ketone Peroxide (MEKP), in a phthalate solution to reduce shock sensitivity</li>
-              <li>Empirical formula C<sub>8</sub>H<sub>18</sub>O<sub>6</sub> · Molecular weight 210.2 g/mol · CAS 1338-23-4</li>
-              <li>Total active oxygen: 8.8–9.0%</li>
-              <li>Appearance: clear, colourless liquid · Odour: typical</li>
-              <li>Density @20°C: 1.180 g/cm³</li>
-              <li>Water content: 3.0% max</li>
-              <li>SADT: 60°C</li>
-              <li>Recommended storage temperature: 5–25°C</li>
-              <li>Shelf life: 6 months under recommended storage conditions</li>
-            </ul>
+        <div class="spec-tds-notice">
+          <div class="spec-tds-notice-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
           </div>
-          <div class="spec-group">
-            <h4>Use &amp; Applications</h4>
-            <ul>
-              <li>A standard reaction medium among organic peroxides; radical polymerization initiator and curing agent for vinyl, acrylic, styrene and unsaturated polyester / vinyl ester resins, used with an accelerator (usually cobalt)</li>
-              <li>Cures unsaturated polyester resins at room temperature or above; suited to work needing a longer handling time before gel</li>
-              <li>Test on the actual compound before use</li>
-              <li>Application areas: adhesives, paints, glass-reinforced plastics (GRP), fibreglass process, marine, industrial processes</li>
-            </ul>
-          </div>
-          <div class="spec-group">
-            <h4>Packaging</h4>
-            <p>Polyethylene jerricans, 25 kg.</p>
-          </div>
-          <div class="spec-group">
-            <h4>Safety &amp; Storage</h4>
-            <ul>
-              <li>Store unopened, undamaged containers in a dry, well-ventilated place, out of direct sunlight</li>
-              <li>Keep away from fire, heat and ignition sources; never weigh it inside the storage room; keep sealed</li>
-              <li>Avoid contact with reducing agents (amines), acids, alkalis and heavy-metal compounds (accelerators, driers, metal soaps)</li>
-              <li>Store 5–25°C; rotate stock FIFO; never store with food or beverages</li>
-            </ul>
+          <div class="spec-tds-notice-body">
+            <h4>Full Technical Data Sheet Available</h4>
+            <p>Chemical properties, use &amp; applications, packaging options, and safety &amp; storage requirements for this product are provided in full in the downloadable Technical Data Sheet.</p>
+            <a href="../documents/tds-mekp-liquid-catalyst.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline spec-tds-notice-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Download TDS (PDF)
+            </a>
           </div>
         </div>
       </div>
