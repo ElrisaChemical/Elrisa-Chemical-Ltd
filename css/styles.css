@@ -678,7 +678,7 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(11, 29, 38, 0.92), rgba(12, 28, 58, 0.82));
+  background: linear-gradient(100deg, rgba(11, 29, 38, 0.9) 0%, rgba(11, 29, 38, 0.78) 45%, rgba(12, 28, 58, 0.55) 100%);
 }
 
 .hero-content {
