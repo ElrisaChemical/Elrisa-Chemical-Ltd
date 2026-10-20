@@ -487,7 +487,6 @@
           <h2>Tell us what you're making — <span class="text-emerald">we'll tell you what it needs</span></h2>
           <p>About ten minutes. Every question is optional — skip anything you're unsure of and we'll finish it together on a call.</p>
           <ul class="rq-points">
-            <li><strong>Sent by email.</strong> Your request goes straight to <span data-eml="info"></span>.</li>
             <li><strong>Goes straight to our chemists.</strong> Every request is assigned to a chemist for review.</li>
             <li><strong>No commitment.</strong> Sending this doesn't start a project or cost anything.</li>
           </ul>
@@ -667,12 +666,12 @@
                 <p>Your request goes straight to Elrisa for review. One of our chemists will be put on your case, and we'll contact you shortly to talk it through and arrange a first meeting. Nothing is charged and nothing is agreed at this stage.</p>
               </div>
               <div class="rq-send-choice" id="rq-send-choice">
-                <p class="rq-send-q">Confirm you're human, then send</p>
+                <p class="rq-send-q">Confirm you're human, then submit</p>
                 <div class="rq-captcha"><div class="h-captcha" data-captcha="true"></div></div>
                 <div class="rq-send-options">
                   <button type="submit" class="rq-send-opt" id="rq-send">
                     <span class="rq-send-ico rq-ico-mail" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></span>
-                    <span class="rq-send-txt"><strong>Send request</strong><small>By email to <span data-eml="info"></span></small></span>
+                    <span class="rq-send-txt"><strong>Submit request</strong></span>
                   </button>
                 </div>
               </div>
@@ -692,7 +691,7 @@
             <h3 tabindex="-1" id="rq-done-title">Thank you — we have it</h3>
             <p id="rq-done-text">Your request has been sent to Elrisa for review. A chemist will be assigned to it, and we'll contact you shortly to talk it through and arrange a first meeting.</p>
             <div class="rq-ref"><span>Your reference</span><strong id="rq-ref"></strong></div>
-            <p class="rq-small">We've sent your request by email. Please quote this reference when you speak to us. If you left parts blank, that's not a problem — we'll go through them with you on the call.</p>
+            <p class="rq-small">Please quote this reference when you speak to us. If you left parts blank, that's not a problem — we'll go through them with you on the call.</p>
           </div>
         </div>
       </div>
@@ -1142,7 +1141,7 @@
         var email = field('rq-email');
         var captcha = form.querySelector('[name="h-captcha-response"]');
         if (!captcha || !captcha.value.trim()) {
-          fail('Please tick the "I am human" box, then press "Send request" again.');
+          fail('Please tick the "I am human" box, then press "Submit request" again.');
           return;
         }
 
@@ -1169,7 +1168,7 @@
 
         var label = sendBtn.querySelector('strong');
         sendBtn.disabled = true; backBtn.disabled = true;
-        label.textContent = 'Sending…';
+        label.textContent = 'Submitting…';
         errorEl.hidden = true;
 
         fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
@@ -1181,7 +1180,7 @@
           .catch(function () {
             fail('We couldn\'t send your request just now. Check your connection and try again, or call us on +233 55 639 5946.');
             sendBtn.disabled = false; backBtn.disabled = false;
-            label.textContent = 'Send request';
+            label.textContent = 'Submit request';
           });
       });
 
