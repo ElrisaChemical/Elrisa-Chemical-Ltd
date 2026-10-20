@@ -25,6 +25,93 @@ if (document.readyState === 'loading') {
   window.elrisaEmails();
 }
 
+// --- Form Drafts ---
+// Keeps what visitors type in a form (on their own device) until they send it or clear it,
+// so leaving the page, refreshing or closing a popup never loses their answers.
+// Use: <form data-draft="some-key">. Call elrisaDraft.clear(form) after a successful send.
+window.elrisaDraft = (() => {
+  const PREFIX = 'elrisa_draft_';
+  const MAX_AGE = 30 * 24 * 60 * 60 * 1000; // forget drafts after 30 days
+  const SKIP = ['botcheck', 'website_url', 'h-captcha-response', 'g-recaptcha-response', 'access_key', 'redirect', 'subject', 'from_name'];
+  const storeKey = (form) => form.dataset.draft ? PREFIX + form.dataset.draft : null;
+  const read = (k) => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
+  const write = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+  const drop = (k) => { try { localStorage.removeItem(k); } catch (e) {} };
+
+  const fields = (form) => Array.from(form.elements).filter((el) =>
+    el.tagName !== 'BUTTON' && el.tagName !== 'FIELDSET' &&
+    !['hidden', 'password', 'file', 'submit', 'button', 'reset'].includes(el.type) &&
+    !SKIP.includes(el.name) && !el.classList.contains('rq-hp') && el.getAttribute('aria-hidden') !== 'true');
+  const fieldKey = (el, i) => el.id || (el.name ? (el.type === 'checkbox' || el.type === 'radio' ? el.name + '=' + el.value : el.name) : '#' + i);
+
+  function save(form) {
+    const k = storeKey(form);
+    if (!k || form._draftPaused) return;
+    const values = {};
+    let filled = false;
+    fields(form).forEach((el, i) => {
+      if (el.type === 'checkbox' || el.type === 'radio') { values[fieldKey(el, i)] = el.checked; if (el.checked) filled = true; }
+      else { values[fieldKey(el, i)] = el.value; if (el.value.trim()) filled = true; }
+    });
+    if (filled) write(k, { t: Date.now(), values }); else drop(k);
+  }
+
+  function notice(form, show) {
+    let box = form.querySelector('.draft-notice');
+    if (!show) { if (box) box.remove(); return; }
+    if (box) return;
+    box = document.createElement('div');
+    box.className = 'draft-notice';
+    box.setAttribute('role', 'status');
+    box.innerHTML = '<span>Welcome back. We kept your answers on this device.</span><button type="button">Clear form</button>';
+    box.querySelector('button').addEventListener('click', () => clear(form, true));
+    form.insertBefore(box, form.firstChild);
+  }
+
+  function restore(form) {
+    const k = storeKey(form);
+    const saved = k && read(k);
+    if (!saved || !saved.values || Date.now() - saved.t > MAX_AGE) { if (k) drop(k); notice(form, false); return false; }
+    let count = 0;
+    fields(form).forEach((el, i) => {
+      const v = saved.values[fieldKey(el, i)];
+      if (v === undefined) return;
+      if (el.type === 'checkbox' || el.type === 'radio') { if (el.checked !== v) { el.checked = v; el.dispatchEvent(new Event('change', { bubbles: true })); } if (v) count++; }
+      else if (v !== '') { el.value = v; el.dispatchEvent(new Event('change', { bubbles: true })); count++; }
+    });
+    notice(form, count > 0);
+    if (count) form.dispatchEvent(new CustomEvent('elrisa:draft-restored', { detail: { count } }));
+    return count > 0;
+  }
+
+  function clear(form, resetFields) {
+    const k = storeKey(form);
+    if (k) drop(k);
+    notice(form, false);
+    form._draftPaused = !resetFields; // after a successful send, don't re-save until they type again
+    if (resetFields) {
+      form.reset();
+      fields(form).forEach((el) => { if (el.type === 'checkbox' || el.type === 'radio') el.dispatchEvent(new Event('change', { bubbles: true })); });
+      form.dispatchEvent(new CustomEvent('elrisa:draft-cleared'));
+    }
+  }
+
+  function bind(form) {
+    if (form._draftBound) return;
+    form._draftBound = true;
+    let timer;
+    const later = (e) => { if (e && e.isTrusted) form._draftPaused = false; clearTimeout(timer); timer = setTimeout(() => save(form), 250); };
+    form.addEventListener('input', later);
+    form.addEventListener('change', later);
+    window.addEventListener('pagehide', () => save(form));
+  }
+
+  const init = () => document.querySelectorAll('form[data-draft]').forEach((form) => { bind(form); restore(form); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+
+  return { bind, restore, clear, save };
+})();
+
 // --- WhatsApp Chat Button ---
 // Added to every page; the message names what the visitor was reading so we know what they want.
 (function () {

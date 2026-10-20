@@ -192,7 +192,7 @@
 
   <script src="https://web3forms.com/client/script.js" async defer></script>
   <link rel="stylesheet" href="../css/styles.css?v=1.3">
-  <link rel="stylesheet" href="../css/enhancements.css?v=1.4">
+  <link rel="stylesheet" href="../css/enhancements.css?v=1.5">
   <link rel="icon" type="image/png" href="../images/ElrisaIcon.png">
   <style>
     /* Hero */
@@ -337,11 +337,10 @@
     .rq-captcha { margin-bottom: 14px; }
     .rq-captcha .rq-hint { margin-top: 6px; }
     .rq-send-q { font-size: 0.9rem; font-weight: 700; color: var(--clr-deep); margin-bottom: 10px; }
-    .rq-send-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rq-send-options { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 420px; }
     .rq-send-opt { font: inherit; display: flex; align-items: center; gap: 12px; text-align: left; padding: 14px 16px; border: 1.5px solid var(--clr-emerald); border-radius: var(--radius-md); background: var(--clr-emerald); color: var(--clr-white); cursor: pointer; transition: var(--transition); }
     .rq-send-opt:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
     .rq-send-opt[disabled] { opacity: 0.6; pointer-events: none; }
-    .rq-send-wa { background: #25D366; border-color: #25D366; }
     .rq-send-ico { flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.2); }
     .rq-send-txt strong { display: block; font-size: 0.95rem; }
     .rq-send-txt small { display: block; font-size: 0.75rem; opacity: 0.9; margin-top: 1px; }
@@ -364,7 +363,6 @@
     .rq-ref { display: inline-block; margin: 20px 0; padding: 12px 22px; border: 1px solid var(--clr-border); border-radius: var(--radius-md); background: var(--clr-offwhite); }
     .rq-ref span { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clr-muted); }
     .rq-ref strong { font-size: 1.35rem; letter-spacing: 0.04em; color: var(--clr-deep); }
-    .rq-wa-btn { display: flex; justify-content: center; max-width: 340px; margin: 0 auto; background: #25D366 !important; border-color: #25D366 !important; }
     .rq-small { font-size: 0.8rem !important; color: var(--clr-muted) !important; margin-top: 16px !important; }
     @media (max-width: 980px) { .rq-layout { grid-template-columns: 1fr; gap: 32px; } .rq-intro { position: static; } }
     @media (max-width: 560px) { .rq-card { padding: 22px 18px; } .rq-choices { grid-template-columns: 1fr; } .rq-group dl div { grid-template-columns: 1fr; gap: 2px; } .rq-controls .btn { padding: 11px 18px; } }
@@ -489,19 +487,18 @@
           <h2>Tell us what you're making — <span class="text-emerald">we'll tell you what it needs</span></h2>
           <p>About ten minutes. Every question is optional — skip anything you're unsure of and we'll finish it together on a call.</p>
           <ul class="rq-points">
-            <li><strong>Send it your way.</strong> By email to <span data-eml="info"></span>, or straight to our WhatsApp — where you can add photos of the problem too.</li>
+            <li><strong>Sent by email.</strong> Your request goes straight to <span data-eml="info"></span>.</li>
             <li><strong>Goes straight to our chemists.</strong> Every request is assigned to a chemist for review.</li>
             <li><strong>No commitment.</strong> Sending this doesn't start a project or cost anything.</li>
           </ul>
           <div class="rq-alt">
             <span>Prefer to talk first?</span>
-            <a href="https://wa.me/233556395946?text=Hi%20Elrisa%2C%20I%27d%20like%20technical%20help%20from%20your%20laboratory." target="_blank" rel="noopener noreferrer">WhatsApp +233 55 639 5946</a>
-            <a href="tel:+233556395946">Call us</a>
+            <a href="tel:+233556395946">Call +233 55 639 5946</a>
           </div>
         </div>
 
         <div class="rq-card reveal-right" id="rq-card">
-          <form id="rq-form" novalidate>
+          <form id="rq-form" data-draft="lab-request" novalidate>
             <input type="checkbox" name="botcheck" class="rq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="text" name="website_url" class="rq-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="_form_loaded" id="rq-loaded">
@@ -621,7 +618,7 @@
               <div class="form-group"><label for="rq-materials">List what you can provide right now <span class="rq-hint">Document names, sample quantities, anything about handling or shipping.</span></label><textarea id="rq-materials" data-label="What you can provide now" rows="3" placeholder="e.g. Two 500 ml samples from the failing batch, plus the SDS for our current thickener."></textarea></div>
               <div class="rq-note rq-warn">
                 <strong>Please do not post samples yet</strong>
-                <p>Wait until we confirm the address, quantity, packaging, labelling and safety information. Hazardous or unidentified material may be refused on arrival. Photos of the problem can be sent on WhatsApp once you submit.</p>
+                <p>Wait until we confirm the address, quantity, packaging, labelling and safety information. Hazardous or unidentified material may be refused on arrival. If photos would help, we will tell you how to send them when we reply.</p>
               </div>
             </fieldset>
 
@@ -670,16 +667,12 @@
                 <p>Your request goes straight to Elrisa for review. One of our chemists will be put on your case, and we'll contact you shortly to talk it through and arrange a first meeting. Nothing is charged and nothing is agreed at this stage.</p>
               </div>
               <div class="rq-send-choice" id="rq-send-choice">
-                <p class="rq-send-q">How would you like to send it?</p>
-                <div class="rq-captcha"><div class="h-captcha" data-captcha="true"></div><p class="rq-hint">Sending by email? Tick the box first. WhatsApp doesn't need it.</p></div>
+                <p class="rq-send-q">Confirm you're human, then send</p>
+                <div class="rq-captcha"><div class="h-captcha" data-captcha="true"></div></div>
                 <div class="rq-send-options">
                   <button type="submit" class="rq-send-opt" id="rq-send">
                     <span class="rq-send-ico rq-ico-mail" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></span>
-                    <span class="rq-send-txt"><strong>Send by email</strong><small>Straight to <span data-eml="info"></span></small></span>
-                  </button>
-                  <button type="button" class="rq-send-opt rq-send-wa" id="rq-send-wa">
-                    <span class="rq-send-ico rq-ico-wa" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>
-                    <span class="rq-send-txt"><strong>Send on WhatsApp</strong><small>To +233 55 639 5946 — add photos too</small></span>
+                    <span class="rq-send-txt"><strong>Send request</strong><small>By email to <span data-eml="info"></span></small></span>
                   </button>
                 </div>
               </div>
@@ -699,8 +692,7 @@
             <h3 tabindex="-1" id="rq-done-title">Thank you — we have it</h3>
             <p id="rq-done-text">Your request has been sent to Elrisa for review. A chemist will be assigned to it, and we'll contact you shortly to talk it through and arrange a first meeting.</p>
             <div class="rq-ref"><span>Your reference</span><strong id="rq-ref"></strong></div>
-            <a class="btn btn-primary rq-wa-btn" id="rq-wa-btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/233556395946">Send a copy &amp; photos on WhatsApp</a>
-            <p class="rq-small">Please quote this reference when you speak to us. If you left parts blank, that's not a problem — we'll go through them with you on the call.</p>
+            <p class="rq-small">We've sent your request by email. Please quote this reference when you speak to us. If you left parts blank, that's not a problem — we'll go through them with you on the call.</p>
           </div>
         </div>
       </div>
@@ -1014,7 +1006,6 @@
   <script>
     (function () {
       var ACCESS_KEY = '617cb79b-b722-4b7e-9059-a83b3c17abaa';
-      var WHATSAPP = '233556395946';
 
       var card = document.getElementById('rq-card');
       var form = document.getElementById('rq-form');
@@ -1026,6 +1017,9 @@
       var errorEl = document.getElementById('rq-error');
       var last = steps.length - 1;
       var index = 0;
+      var STEP_KEY = 'elrisa_draft_lab-request_step';
+      var started = false;
+      function rememberStep(i) { try { if (i > 0) localStorage.setItem(STEP_KEY, String(i)); else localStorage.removeItem(STEP_KEY); } catch (e) {} }
 
       document.getElementById('rq-loaded').value = Date.now();
       var today = new Date();
@@ -1098,6 +1092,7 @@
         document.getElementById('rq-bar-fill').style.width = Math.round(index / last * 100) + '%';
         document.getElementById('rq-count').textContent = (index + 1) + ' / ' + steps.length;
         if (index === last) renderSummary();
+        if (started && !form.hidden) rememberStep(index);
         if (focus !== false) {
           if (card.getBoundingClientRect().top < 0) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
           steps[index].querySelector('.rq-title').focus({ preventScroll: true });
@@ -1116,32 +1111,6 @@
         return 'ELR-' + d + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
       }
 
-      function waLink(text) { return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text); }
-
-      function shortWhatsappText(ref) {
-        var who = field('rq-contact') || field('rq-authname');
-        var company = field('rq-legal') || field('rq-trading');
-        var problem = field('rq-problem');
-        var lines = ['Hi Elrisa, I have just sent a technical assistance request from your website.', 'Reference: ' + ref];
-        if (company) lines.push('Company: ' + company);
-        if (who) lines.push('Contact: ' + who);
-        if (problem) lines.push('Problem: ' + (problem.length > 500 ? problem.slice(0, 500) + '…' : problem));
-        lines.push('', 'I will attach photos here if they help.');
-        return lines.join('\n');
-      }
-
-      function fullWhatsappText(ref) {
-        var lines = ['*Technical Assistance Request*', 'Reference: ' + ref, ''];
-        collect().forEach(function (g) {
-          lines.push('*' + g.title + '*');
-          g.rows.forEach(function (r) { lines.push(r[0] + ': ' + r[1]); });
-          lines.push('');
-        });
-        lines.push('(Sent from the Elrisa laboratory page. I can attach photos below.)');
-        var text = lines.join('\n');
-        return text.length > 3800 ? text.slice(0, 3800) + '…\n(Answer shortened — I will send the rest here.)' : text;
-      }
-
       function fail(msg) { errorEl.textContent = msg; errorEl.hidden = false; }
 
       function emailProblem() {
@@ -1150,40 +1119,22 @@
         return '';
       }
 
-      function showDone(ref, via) {
+      function showDone(ref) {
+        if (window.elrisaDraft) window.elrisaDraft.clear(form);
+        rememberStep(0);
         form.hidden = true;
         document.getElementById('rq-ref').textContent = ref;
-        var btn = document.getElementById('rq-wa-btn');
-        if (via === 'whatsapp') {
-          document.getElementById('rq-done-title').textContent = 'Almost there — press send in WhatsApp';
-          document.getElementById('rq-done-text').textContent = 'Your answers are ready in a WhatsApp chat with Elrisa. Press send there, and add any photos of the problem. If WhatsApp didn\'t open, use the button below.';
-          btn.textContent = 'Open WhatsApp again';
-          btn.href = waLink(fullWhatsappText(ref));
-        } else {
-          btn.href = waLink(shortWhatsappText(ref));
-        }
         document.getElementById('rq-done').hidden = false;
         card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         document.getElementById('rq-done-title').focus({ preventScroll: true });
       }
-
-      document.getElementById('rq-send-wa').addEventListener('click', function () {
-        var problem = emailProblem();
-        if (problem) { fail(problem); return; }
-        var ref = reference();
-        var url = waLink(fullWhatsappText(ref));
-        var win = window.open(url, '_blank');
-        if (win) win.opener = null;
-        showDone(ref, 'whatsapp');
-        if (!win) location.href = url;
-      });
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (index !== last) return;
 
         if (!field('rq-phone') && !field('rq-email') && !field('rq-wa')) {
-          fail('To send by email, please add a phone number or email on the "About you" page so we can get back to you — or choose "Send on WhatsApp".');
+          fail('Please add a phone number or email on the "About you" page so we can get back to you.');
           return;
         }
         var problem = emailProblem();
@@ -1191,14 +1142,14 @@
         var email = field('rq-email');
         var captcha = form.querySelector('[name="h-captcha-response"]');
         if (!captcha || !captcha.value.trim()) {
-          fail('Please tick the "I am human" box above the send buttons, then press "Send by email" again — or choose "Send on WhatsApp".');
+          fail('Please tick the "I am human" box, then press "Send request" again.');
           return;
         }
 
         var ref = reference();
 
         if (window.ElrisaForms) {
-          if (window.ElrisaForms.isSpam(form)) { showDone(ref, 'email'); return; }
+          if (window.ElrisaForms.isSpam(form)) { showDone(ref); return; }
           if (window.ElrisaForms.rateLimited('lab-request')) { fail('Please wait 30 seconds before sending again.'); return; }
         }
 
@@ -1216,9 +1167,8 @@
           g.rows.forEach(function (r) { data.append(g.title + ' — ' + r[0], r[1]); });
         });
 
-        var waBtn = document.getElementById('rq-send-wa');
         var label = sendBtn.querySelector('strong');
-        sendBtn.disabled = true; waBtn.disabled = true; backBtn.disabled = true;
+        sendBtn.disabled = true; backBtn.disabled = true;
         label.textContent = 'Sending…';
         errorEl.hidden = true;
 
@@ -1226,19 +1176,28 @@
           .then(function (r) { return r.json(); })
           .then(function (res) {
             if (!res.success) throw new Error(res.message || 'Send failed');
-            showDone(ref, 'email');
+            showDone(ref);
           })
           .catch(function () {
-            fail('We couldn\'t send that by email just now. Check your connection and try again — or choose "Send on WhatsApp".');
-            sendBtn.disabled = false; waBtn.disabled = false; backBtn.disabled = false;
-            label.textContent = 'Send by email';
+            fail('We couldn\'t send your request just now. Check your connection and try again, or call us on +233 55 639 5946.');
+            sendBtn.disabled = false; backBtn.disabled = false;
+            label.textContent = 'Send request';
           });
       });
 
+      // Saved answers (see elrisaDraft in main.js): reopen on the step they left off
+      form.addEventListener('elrisa:draft-restored', function () {
+        var saved = 0;
+        try { saved = parseInt(localStorage.getItem(STEP_KEY) || '0', 10) || 0; } catch (e) {}
+        go(Math.min(Math.max(saved, 1), last), false);
+      });
+      form.addEventListener('elrisa:draft-cleared', function () { rememberStep(0); go(0, false); });
+
       go(0, false);
+      started = true;
     })();
   </script>
-  <script src="../js/main.js?v=1.3"></script>
+  <script src="../js/main.js?v=1.4"></script>
   <script src="../js/enhancements.js?v=1.2"></script>
   <script src="../js/seo-security.js?v=1.1"></script>
 </body>

@@ -127,7 +127,7 @@
 
   <script src="https://web3forms.com/client/script.js" async defer></script>
   <link rel="stylesheet" href="../css/styles.css?v=1.3">
-  <link rel="stylesheet" href="../css/enhancements.css?v=1.4">
+  <link rel="stylesheet" href="../css/enhancements.css?v=1.5">
   <link rel="icon" type="image/png" href="../images/ElrisaIcon.png">
   <style>
     .product-card {
@@ -1356,7 +1356,8 @@
       currentProduct = productKey;
       const form = document.getElementById('product-form');
 
-      // Reset form completely first
+      // Reset form completely first (detach the previous product's draft so it isn't overwritten)
+      delete form.dataset.draft;
       form.reset();
 
       // Populate header
@@ -1370,6 +1371,13 @@
 
       // Inject dynamic fields (fresh each time)
       document.getElementById('pm-dynamic-fields').innerHTML = config.fields;
+
+      // Bring back anything they typed for this product before (saved on their device until sent)
+      if (window.elrisaDraft) {
+        form.dataset.draft = 'product-' + productKey;
+        window.elrisaDraft.bind(form);
+        window.elrisaDraft.restore(form);
+      }
 
       // Reset states
       form.style.display = 'block';
@@ -1393,8 +1401,10 @@
       document.getElementById('pm-backdrop').classList.remove('open');
       document.body.style.overflow = '';
 
-      // Full reset on close
+      // Clear the on-screen form on close — their answers stay saved and come back next time they open it
       const form = document.getElementById('product-form');
+      if (window.elrisaDraft) window.elrisaDraft.save(form);
+      delete form.dataset.draft;
       form.reset();
       form.style.display = 'block';
       document.getElementById('pm-success').style.display = 'none';
@@ -1529,6 +1539,7 @@
         const data = await res.json();
 
         if (data.success) {
+          if (window.elrisaDraft) window.elrisaDraft.clear(form);
           document.getElementById('cv-overlay').classList.remove('open');
           form.style.display = 'none';
           document.getElementById('pm-success').style.display = 'block';
@@ -1549,7 +1560,7 @@
 
   </script>
 
-  <script src="../js/main.js?v=1.3"></script>
+  <script src="../js/main.js?v=1.4"></script>
   <script src="../js/enhancements.js?v=1.1"></script>
   <script src="../js/seo-security.js?v=1.1"></script>
 </body>

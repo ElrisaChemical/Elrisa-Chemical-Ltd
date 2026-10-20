@@ -853,3 +853,34 @@ html, body {
 /* Keep the chat button out of the way while the homepage "New product" popup is open */
 .fab-whatsapp { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.3s ease; }
 body:has(.promo-float.visible:not(.dismissed)) .fab-whatsapp { opacity: 0; pointer-events: none; }
+
+/* --- "We kept your answers" note shown on forms with a saved draft --- */
+.draft-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-bottom: 18px;
+  padding: 10px 14px;
+  border: 1px solid #A7F3D0;
+  border-radius: var(--radius-md);
+  background: var(--clr-light);
+  color: var(--clr-forest);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.draft-notice button {
+  font: inherit;
+  font-weight: 700;
+  color: var(--clr-forest);
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.draft-notice button:hover { color: var(--clr-emerald); }
+.draft-notice button:focus-visible { outline: 2px solid var(--clr-emerald); outline-offset: 2px; border-radius: 2px; }
