@@ -14,6 +14,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/%{REQUEST_URI} [R=301,L]
 
+# Retired pages: send visitors (and search rankings) to the page that replaced them
+RewriteRule ^pages/phenol-free-phenolic-resin\.html$ /pages/phenolic-resins.html [R=301,L]
+
 # Security Headers
 <IfModule mod_headers.c>
   # Prevent clickjacking

@@ -122,7 +122,6 @@ window.elrisaDraft = (() => {
       'cnsl-friction-materials.html': 'CNSL for friction materials',
       'polyols.html': 'bio-based polyols',
       'phenolic-resins.html': 'phenolic resins',
-      'phenol-free-phenolic-resin.html': 'phenol-free phenolic resin',
       'contract-processing.html': 'contract processing',
       'export-supply.html': 'export supply',
       'laboratory.html': 'your laboratory services',
