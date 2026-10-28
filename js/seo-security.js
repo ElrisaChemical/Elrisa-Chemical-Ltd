@@ -19,6 +19,28 @@ window.ElrisaForms = {
       localStorage.setItem(storageKey, Date.now().toString());
       return false;
     } catch(e) { return false; }
+  },
+  // One-click "I'm human" box: <div data-human-check></div> inside a form.
+  // Forms without the box always pass.
+  isHuman: function(form) {
+    const box = form.querySelector('.human-check');
+    return !box || box.getAttribute('aria-checked') === 'true';
+  },
+  // Point the visitor at the box when they try to send without ticking it
+  flagHuman: function(form) {
+    const box = form.querySelector('.human-check');
+    if (!box) return;
+    box.classList.add('is-flagged');
+    const msg = box.parentNode.querySelector('.hc-msg');
+    if (msg) msg.hidden = false;
+    box.focus();
+  },
+  resetHuman: function(form) {
+    const box = form.querySelector('.human-check');
+    if (!box) return;
+    box.setAttribute('aria-checked', 'false');
+    box.classList.remove('is-checking', 'is-verified', 'is-flagged');
+    box.querySelector('.hc-label').textContent = "I'm human";
   }
 };
 
@@ -215,6 +237,43 @@ document.addEventListener('DOMContentLoaded', () => {
       tf.value = Date.now().toString();
       form.appendChild(tf);
     }
+  });
+
+  // Build the one-click human check. A real click (not a script), a few seconds
+  // on the page and an empty honeypot are what tell people and bots apart.
+  document.querySelectorAll('[data-human-check]').forEach(function(slot) {
+    const form = slot.closest('form');
+    if (!form || slot.querySelector('.human-check')) return;
+    slot.classList.add('human-check-wrap');
+    slot.innerHTML =
+      '<button type="button" class="human-check" role="checkbox" aria-checked="false">' +
+        '<span class="hc-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span>' +
+        '<span class="hc-label">I\'m human</span>' +
+        '<span class="hc-note">Spam check</span>' +
+      '</button>' +
+      '<p class="hc-msg" role="alert" hidden>Please click "I\'m human" first.</p>';
+    const box = slot.querySelector('.human-check');
+    const label = box.querySelector('.hc-label');
+    const msg = slot.querySelector('.hc-msg');
+
+    box.addEventListener('click', function(e) {
+      if (!e.isTrusted || box.classList.contains('is-checking') || box.getAttribute('aria-checked') === 'true') return;
+      box.classList.remove('is-flagged');
+      msg.hidden = true;
+      box.classList.add('is-checking');
+      label.textContent = 'Checking…';
+      const tf = form.querySelector('[name="_form_loaded"]');
+      const loaded = tf ? parseInt(tf.value, 10) : Date.now();
+      const wait = Math.max(700, 3200 - (Date.now() - loaded));
+      setTimeout(function() {
+        box.classList.remove('is-checking');
+        const hp = form.querySelector('[name="website_url"]');
+        if (hp && hp.value !== '') { label.textContent = "I'm human"; return; }
+        box.classList.add('is-verified');
+        box.setAttribute('aria-checked', 'true');
+        label.textContent = 'Verified — thank you';
+      }, wait);
+    });
   });
 
 

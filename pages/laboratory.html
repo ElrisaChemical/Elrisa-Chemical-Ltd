@@ -312,9 +312,8 @@
   }
   </script>
 
-  <script src="https://web3forms.com/client/script.js" async defer></script>
   <link rel="stylesheet" href="../css/styles.css?v=1.3">
-  <link rel="stylesheet" href="../css/enhancements.css?v=1.6">
+  <link rel="stylesheet" href="../css/enhancements.css?v=1.7">
   <link rel="icon" type="image/png" href="../images/ElrisaIcon.png">
   <style>
     /* Hero */
@@ -797,7 +796,7 @@
               </div>
               <div class="rq-send-choice" id="rq-send-choice">
                 <p class="rq-send-q">Confirm you're human, then submit</p>
-                <div class="rq-captcha"><div class="h-captcha" data-captcha="true"></div></div>
+                <div class="rq-captcha" data-human-check></div>
                 <div class="rq-send-options">
                   <button type="submit" class="rq-send-opt" id="rq-send">
                     <span class="rq-send-ico rq-ico-mail" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg></span>
@@ -1319,9 +1318,9 @@
         var problem = emailProblem();
         if (problem) { fail(problem); return; }
         var email = field('rq-email');
-        var captcha = form.querySelector('[name="h-captcha-response"]');
-        if (!captcha || !captcha.value.trim()) {
-          fail('Please tick the "I am human" box, then press "Submit request" again.');
+        if (window.ElrisaForms && !window.ElrisaForms.isHuman(form)) {
+          window.ElrisaForms.flagHuman(form);
+          fail('Please click "I\'m human", then press "Submit request" again.');
           return;
         }
 
@@ -1338,7 +1337,6 @@
         data.append('subject', 'Technical Assistance Request ' + ref + ' — ' + company);
         data.append('from_name', 'Elrisa Website — Laboratory');
         data.append('botcheck', '');
-        data.append('h-captcha-response', captcha.value);
         if (email) data.append('replyto', email);
         data.append('Reference', ref);
         data.append('Submitted from', location.href.split('#')[0]);
@@ -1378,6 +1376,6 @@
   </script>
   <script src="../js/main.js?v=1.4"></script>
   <script src="../js/enhancements.js?v=1.2"></script>
-  <script src="../js/seo-security.js?v=1.1"></script>
+  <script src="../js/seo-security.js?v=1.2"></script>
 </body>
 </html>
