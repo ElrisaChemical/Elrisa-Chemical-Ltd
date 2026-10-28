@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         box.classList.add('is-verified');
         box.setAttribute('aria-checked', 'true');
         label.textContent = 'Verified — thank you';
+        form.dispatchEvent(new CustomEvent('elrisa:human-verified'));
       }, wait);
     });
   });
