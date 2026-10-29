@@ -938,3 +938,9 @@ body:has(.promo-float.visible:not(.dismissed)) .fab-whatsapp { opacity: 0; point
 @media (min-width: 900px) {
   .nav-logo .logo-icon { height: auto !important; aspect-ratio: 16 / 9; margin-block: -7px; }
 }
+
+/* --- Forms: fields in one row always line up, even when one label wraps to two lines --- */
+.form-row, .row-3 { align-items: end; }
+/* Lab request form: date boxes render taller than text boxes, so fix one height for both */
+#rq-form .form-group input:not([type="checkbox"]):not([type="radio"]),
+#rq-form .form-group select { height: 44px; box-sizing: border-box; }

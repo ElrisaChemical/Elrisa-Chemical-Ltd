@@ -229,3 +229,7 @@ main > section { scroll-margin-top: 130px; }
 .region .ports { display: block; margin-top: 8px; color: var(--clr-sun); font-size: 0.76rem; font-weight: 600; }
 .hcfc-note { margin-top: 10px; font-size: 0.8rem; color: var(--clr-muted); }
 
+
+/* Text boxes and dropdowns share one height so a row of fields lines up exactly */
+.req-panel .form-group input:not([type="checkbox"]):not([type="radio"]),
+.req-panel .form-group select { height: 48px; box-sizing: border-box; }
