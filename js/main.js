@@ -120,7 +120,7 @@ window.elrisaDraft = (() => {
     const topics = {
       'cnsl.html': 'cashew nut shell liquid (CNSL)',
       'cnsl-friction-materials.html': 'CNSL for friction materials',
-      'polyols.html': 'bio-based polyols',
+      'polyols.html': 'polyols and polyurethane foam chemicals',
       'phenolic-resins.html': 'phenolic resins',
       'contract-processing.html': 'contract processing',
       'export-supply.html': 'export supply',

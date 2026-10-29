@@ -539,7 +539,7 @@
     @media (prefers-reduced-motion: reduce) { .app-card img { transition: none; } .app-card:hover img { transform: none; } }
     /* Phones: swipe through the cards instead of scrolling past four tall ones */
     @media (max-width: 640px) {
-      .app-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin: 0 -16px; padding: 0 16px 8px; scrollbar-width: none; }
+      .app-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; gap: 12px; margin: 0 -16px; padding: 0 16px 8px; scrollbar-width: none; }
       .app-grid::-webkit-scrollbar { display: none; }
       .app-card { flex: 0 0 82%; min-height: 280px; scroll-snap-align: start; }
       .supply-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -647,7 +647,7 @@
             <a href="products.html">All Products</a>
             <div class="nav-dropdown-divider"></div>
             <a href="cnsl.html">Cashew Nut Shell Liquid</a>
-            <a href="polyols.html">Bio-Based Polyols</a>
+            <a href="polyols.html">Polyols &amp; PU Foam</a>
             <a href="phenolic-resins.html" class="active">Phenolic Resins</a>
             <a href="contract-processing.html">Contract Processing</a>
             <a href="bpo-paste-mekp.html">BPO Paste & MEKP</a>
@@ -1587,7 +1587,11 @@
         function fail(msg, field) {
           errorEl.textContent = msg;
           errorEl.hidden = false;
-          if (field) field.focus();
+          if (field) {
+            // Centre the field so it is clear of the site header and the pinned section bar
+            field.focus({ preventScroll: true });
+            field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
         }
         form.addEventListener('elrisa:human-verified', function () { errorEl.hidden = true; });
 
