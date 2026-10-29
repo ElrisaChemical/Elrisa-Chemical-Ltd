@@ -270,7 +270,7 @@
     search.dispatchEvent(new Event('input'));
   }
   search.addEventListener('input', function () {
-    var q = search.value.trim().toLowerCase().replace(/^(elribond|elripol)\s*/, '');
+    var q = search.value.trim().toLowerCase().replace(/^(elribond|elripol|elrifoam)\s*/, '');
     gradesSection.classList.toggle('is-searching', !!q);
     if (!q) {
       document.querySelectorAll('#catalogue tbody tr').forEach(function (r) { r.hidden = false; });
