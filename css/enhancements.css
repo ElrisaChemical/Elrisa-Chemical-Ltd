@@ -932,3 +932,9 @@ body:has(.promo-float.visible:not(.dismissed)) .fab-whatsapp { opacity: 0; point
 .hc-msg { margin-top: 6px; font-size: 0.82rem; font-weight: 600; color: #92400E; }
 @keyframes hc-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .human-check.is-checking .hc-box { animation-duration: 2s; } }
+
+/* --- Header logo: the PNG is 16:9, so a 16:9 box shows it at the same size without
+   an invisible 175px-tall overhang that caught clicks meant for content below the menu --- */
+@media (min-width: 900px) {
+  .nav-logo .logo-icon { height: auto !important; aspect-ratio: 16 / 9; margin-block: -7px; }
+}

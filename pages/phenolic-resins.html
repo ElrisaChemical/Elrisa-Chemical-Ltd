@@ -403,7 +403,7 @@
   </script>
 
   <link rel="stylesheet" href="../css/styles.css?v=1.3">
-  <link rel="stylesheet" href="../css/enhancements.css?v=1.7">
+  <link rel="stylesheet" href="../css/enhancements.css?v=1.8">
   <link rel="icon" type="image/png" href="../images/ElrisaIcon.png">
   <style>
     /* Section bar: sits under the hero, then pins under the site header once scrolled past
@@ -452,6 +452,13 @@
     .need-table a { color: var(--clr-forest); font-weight: 600; }
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 48px; align-items: start; }
     @media (max-width: 860px) { .intro-grid { grid-template-columns: 1fr; } }
+    .intro-head { max-width: 860px; margin-bottom: 26px; }
+    /* Photo and text side by side; the photo stretches to the height of the text so both edges line up */
+    .intro-grid.with-photo { align-items: stretch; }
+    .intro-photo { position: relative; min-height: 260px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+    .intro-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .intro-photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(90deg, var(--clr-emerald), var(--clr-lime)); }
+    @media (max-width: 860px) { .intro-photo { min-height: 220px; } }
 
     /* Small tab switchers (How to choose) */
     .mini-tabs { display: inline-flex; gap: 4px; padding: 4px; background: var(--clr-white); border: 1px solid var(--clr-border); border-radius: var(--radius-full); margin-bottom: 26px; max-width: 100%; overflow-x: auto; }
@@ -725,10 +732,13 @@
   <!-- Intro -->
   <section class="section-pad" id="about-range" style="padding-bottom:0;">
     <div class="container">
-      <div class="intro-grid reveal">
-        <div>
-          <span class="section-label">What we supply</span>
-          <h2>The binder behind every <span class="text-emerald">brake pad and grinding wheel</span></h2>
+      <div class="intro-head reveal">
+        <span class="section-label">What we supply</span>
+        <h2>The binder behind every <span class="text-emerald">brake pad and grinding wheel</span></h2>
+      </div>
+      <div class="intro-grid with-photo reveal">
+        <div class="intro-photo">
+          <img src="../images/resins/app-friction.jpg" alt="Car disc brake and caliper — the brake pads inside are bonded with phenolic resin" width="1200" height="802" loading="lazy" decoding="async">
         </div>
         <div>
           <p class="lead-text">Phenolic resin holds a friction material or bonded abrasive together: hot-pressed with fibres, fillers and abrasives, it melts, wets every particle and cures into a rigid matrix that keeps its strength at braking and grinding temperatures.</p>

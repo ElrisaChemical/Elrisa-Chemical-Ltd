@@ -522,16 +522,19 @@
   </script>
 
   <link rel="stylesheet" href="../css/styles.css?v=1.3">
-  <link rel="stylesheet" href="../css/enhancements.css?v=1.7">
+  <link rel="stylesheet" href="../css/enhancements.css?v=1.8">
   <link rel="stylesheet" href="../css/catalogue.css?v=1.0">
   <link rel="icon" type="image/png" href="../images/ElrisaIcon.png">
   <style>
     .pr-hero-img { object-position: 50% 50%; }
     .pr-hero::after { background: linear-gradient(90deg, rgba(11,29,38,0.95) 0%, rgba(11,29,38,0.86) 42%, rgba(11,29,38,0.45) 75%, rgba(11,29,38,0.3) 100%), linear-gradient(0deg, rgba(11,29,38,0.85) 0%, rgba(11,29,38,0) 45%); }
-    .intro-photo { position: relative; margin-top: 24px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
-    .intro-photo img { display: block; width: 100%; height: 300px; object-fit: cover; }
+    .intro-head { max-width: 860px; margin-bottom: 26px; }
+    /* Photo and text side by side; the photo stretches to the height of the text so both edges line up */
+    .intro-grid.with-photo { align-items: stretch; }
+    .intro-photo { position: relative; min-height: 260px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+    .intro-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .intro-photo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(90deg, var(--clr-emerald), var(--clr-lime)); }
-    @media (max-width: 860px) { .intro-photo img { height: 220px; } }
+    @media (max-width: 860px) { .intro-photo { min-height: 220px; } }
     .intro-points { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
     .intro-points li { position: relative; padding-left: 26px; font-size: 0.95rem; color: var(--clr-slate); line-height: 1.6; }
     .intro-points li::before { content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border-radius: 3px; background: var(--clr-emerald); }
@@ -659,13 +662,13 @@
   <!-- Intro -->
   <section class="section-pad" id="about-range" style="padding-bottom:0;">
     <div class="container">
-      <div class="intro-grid reveal">
-        <div>
-          <span class="section-label">What we supply</span>
-          <h2>The whole polyurethane recipe, <span class="text-emerald">from one supplier</span></h2>
-          <div class="intro-photo">
-            <img src="../images/polyols/drums-pallets.jpg" alt="Blue drums of polyol and PU chemicals stacked on pallets, ready to ship" width="1200" height="900" loading="lazy" decoding="async">
-          </div>
+      <div class="intro-head reveal">
+        <span class="section-label">What we supply</span>
+        <h2>The whole polyurethane recipe, <span class="text-emerald">from one supplier</span></h2>
+      </div>
+      <div class="intro-grid with-photo reveal">
+        <div class="intro-photo">
+          <img src="../images/polyols/drums-pallets.jpg" alt="Blue drums of polyol and PU chemicals stacked on pallets, ready to ship" width="1200" height="900" loading="lazy" decoding="async">
         </div>
         <div>
           <p class="lead-text">Every polyurethane foam starts with two liquids: a polyol and an isocyanate. Elrisa supplies both sides, plus the catalysts, silicones, flame retardants and blowing agents that turn them into the foam you sell.</p>
