@@ -249,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
       '<button type="button" class="human-check" role="checkbox" aria-checked="false">' +
         '<span class="hc-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span>' +
         '<span class="hc-label">I\'m human</span>' +
-        '<span class="hc-note">Spam check</span>' +
       '</button>' +
       '<p class="hc-msg" role="alert" hidden>Please click "I\'m human" first.</p>';
     const box = slot.querySelector('.human-check');
